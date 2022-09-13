@@ -51,4 +51,20 @@ public class ControllerClass {
 		return this.queryServiceImpl.query3();
 	}
 	
+	//API for 4th question of db assignment
+	@GetMapping(path="/query4")
+	public ResponseEntity<Object>query4(){
+			
+		return this.queryServiceImpl.query4();
+	}
+	
+
+	//API for 5th question of db assignment
+	@GetMapping(path="/query5")
+	public ResponseEntity<Object>query5(){
+			
+		return this.queryServiceImpl.query5();
+	}
+	
+	
 }

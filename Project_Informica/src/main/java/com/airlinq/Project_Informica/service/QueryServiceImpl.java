@@ -114,14 +114,39 @@ public class QueryServiceImpl implements QueryService{
 
 	@Override
 	public ResponseEntity<Object> query4() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Qry = "	Select c.OrderID,\r\n"
+				+ "	a.CompanyName,\r\n"
+				+ "    a.ContactName,\r\n"
+				+ "    d.ProductName,\r\n"
+				+ "    c.ProductID,\r\n"
+				+ "    c.UnitPrice,\r\n"
+				+ "	c.Quantity,\r\n"
+				+ "    c.Discount\r\n"
+				+ "from Customers as a inner join Orders as b \r\n"
+				+ "on a.CustomerID = b.CustomerID inner join `Order Details` as c \r\n"
+				+ "on b.OrderID = c.OrderID inner join Products as d \r\n"
+				+ "on c.ProductID = d.ProductID;";
+
+		Object ans = jdbcTemplate.queryForList(Qry);
+		return new ResponseEntity<>(ans,HttpStatus.OK);
+		
 	}
 
 	@Override
 	public ResponseEntity<Object> query5() {
-		// TODO Auto-generated method stub
-		return null;
+	
+		Qry ="Select Suppliers.SupplierID,\r\n"
+				+ "	Suppliers.CompanyName,\r\n"
+				+ "    Suppliers.ContactName,\r\n"
+				+ "    Group_Concat(Products.ProductName)\r\n"
+				+ "from Suppliers right join Products\r\n"
+				+ "on Suppliers.SupplierID = Products.SupplierId\r\n"
+				+ "Group By Suppliers.SupplierID;";
+
+	
+		Object ans = jdbcTemplate.queryForList(Qry);
+		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
 
 	@Override
