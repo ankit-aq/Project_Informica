@@ -115,7 +115,6 @@ public class QueryServiceImpl implements QueryService{
 	@Override
 	public ResponseEntity<Object> query4() {
 		
-		
 		Qry = "	Select c.OrderID,\r\n"
 				+ "	a.CompanyName,\r\n"
 				+ "    a.ContactName,\r\n"
@@ -129,10 +128,8 @@ public class QueryServiceImpl implements QueryService{
 				+ "on b.OrderID = c.OrderID inner join Products as d \r\n"
 				+ "on c.ProductID = d.ProductID;";
 
-	
 		Object ans = jdbcTemplate.queryForList(Qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
-		
 		
 	}
 
