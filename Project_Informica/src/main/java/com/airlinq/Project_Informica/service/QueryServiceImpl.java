@@ -57,6 +57,8 @@ public class QueryServiceImpl implements QueryService{
 		final String token
 				= jwtUtility.generateToken(userDetails);
 		
+		System.out.println("hello5");
+		
 		return new JwtResponse(token);
 		
 	}
