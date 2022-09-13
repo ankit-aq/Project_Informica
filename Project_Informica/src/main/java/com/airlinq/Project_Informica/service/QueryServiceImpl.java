@@ -151,38 +151,57 @@ public class QueryServiceImpl implements QueryService{
 
 	@Override
 	public ResponseEntity<Object> query6() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Qry = "Select Orders.OrderID, totalSum(Orders.OrderID) \r\n"
+				+ "from Orders order by Orders.OrderID";
+		
+		Object ans = jdbcTemplate.queryForList(Qry);
+		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Object> query7() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		 Qry = "Select * from Products";
+		
+		Object ans = jdbcTemplate.queryForList(Qry);
+		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Object> query8() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		 Qry = "Select * from vw_customers_order";
+
+		Object ans = jdbcTemplate.queryForList(Qry);
+		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Object> query9() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		 Qry = "Select * from CustomerOrder";
+	
+		Object ans = jdbcTemplate.queryForList(Qry);
+		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Object> query10() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Qry = "Select * from CustomerDetails";
+		
+		Object ans = jdbcTemplate.queryForList(Qry);
+		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<Object> query11() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Qry = "Select * from AllOrders;" ;
+	
+		Object ans = jdbcTemplate.queryForList(Qry);
+		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
 
 }
