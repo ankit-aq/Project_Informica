@@ -66,5 +66,45 @@ public class ControllerClass {
 		return this.queryServiceImpl.query5();
 	}
 	
+	//API for 6th question of db assignment
+	@GetMapping(path="/query6")
+	public ResponseEntity<Object>query6(){
+				
+		return this.queryServiceImpl.query6();
+	}
+		
+	//API for 7th question of db assignment
+	@GetMapping(path="/query7")
+	public ResponseEntity<Object>query7(){
+				
+		return this.queryServiceImpl.query7();
+	}
 	
+	//API for 8th question of db assignment
+	@GetMapping(path="/query8")
+	public ResponseEntity<Object>query8(){
+				
+		return this.queryServiceImpl.query8();
+	}
+	
+	//API for 9th question of db assignment
+	@GetMapping(path="/query9")
+	public ResponseEntity<Object>query9(){
+				
+		return this.queryServiceImpl.query9();
+	}
+		
+	//API for 10th question of db assignment
+	@GetMapping(path="/query10")
+	public ResponseEntity<Object>query10(){
+				
+		return this.queryServiceImpl.query10();
+	}
+	
+	//API for 11th question of db assignment
+	@GetMapping(path="/query11")
+	public ResponseEntity<Object>query11(){
+					
+		return this.queryServiceImpl.query11();
+	}
 }
