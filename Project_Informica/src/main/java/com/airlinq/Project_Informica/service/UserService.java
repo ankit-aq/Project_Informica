@@ -43,13 +43,13 @@ public class UserService implements UserDetailsService {
 				return new User(dbusername, dbpassword, new ArrayList<>());
 			}
 			else {
-				System.out.println("wuuf");
+
 				throw new UsernameNotFoundException("User not found !!");
 			}
 			
 		}
 		catch (Exception e) {
-			System.out.println("huuf");
+
 			throw new UsernameNotFoundException("User not found !!");
 		}
 		
