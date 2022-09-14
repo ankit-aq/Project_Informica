@@ -4,6 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The JwtRequest class contains username and password which
+ * come from the request body.
+ * 
+ * @author Adarsh Kumar Jha
+ * @version 1.0
+ *
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

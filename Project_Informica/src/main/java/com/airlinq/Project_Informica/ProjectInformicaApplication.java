@@ -6,6 +6,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * 
+ * The ProjectInformicaApplcation class implements the main function
+ * to run the spring boot project. It also contains password encoder function
+ * to encode the password.
+ * 
+ * @author Ankit Sharma
+ * @version 1.0
+ *
+ */
+
 @SpringBootApplication
 public class ProjectInformicaApplication {
 

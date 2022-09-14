@@ -1,7 +1,17 @@
 package com.airlinq.Project_Informica.entities;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * This class UserData used to store data
+ * in the same format present in the databse user_details table. 
+ * 
+ * @author Mahi Kumawat
+ * @version 1.0
+ */
+
+@Entity
 public class UserData {
 
 	@Id

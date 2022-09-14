@@ -15,6 +15,16 @@ import com.airlinq.Project_Informica.model.JwtRequest;
 import com.airlinq.Project_Informica.model.JwtResponse;
 import com.airlinq.Project_Informica.utility.JwtUtility;
 
+/**
+ * The QueryServiceImpl class defines all the QueryService interface methods.
+ * All the methods in this class will be invoked by the controller class
+ * for accepting the request and giving the response.
+ * 
+ * @author Ankit Sharma
+ * @version 1.0
+ *
+ */
+
 @Service
 public class QueryServiceImpl implements QueryService{
 
@@ -33,6 +43,10 @@ public class QueryServiceImpl implements QueryService{
 	@Autowired
 	private UserService userService;
 	
+	
+	/**
+	 * This authenticate function authenticate the requests and the credentials and return the token.
+	 */
 	
 	@Override
 	public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
@@ -60,6 +74,13 @@ public class QueryServiceImpl implements QueryService{
 		return new JwtResponse(token);
 		
 	}
+	
+	/**
+	 * This function returns the data from the database after 
+	 * filtering the data using the sql query.
+	 * It returns the data in the json format.
+	 * 
+	 */
 
 	@Override
 	public ResponseEntity<Object> query1() {
@@ -75,6 +96,13 @@ public class QueryServiceImpl implements QueryService{
 		
 	}
 
+	
+	/**
+	 * This function returns the data from the database after 
+	 * filtering the data using the sql query.
+	 * It returns the data in the json format.
+	 * 
+	 */
 	@Override
 	public ResponseEntity<Object> query2() {
 		
@@ -92,6 +120,13 @@ public class QueryServiceImpl implements QueryService{
 		
 	}
 
+	/**
+	 * This function returns the data from the database after 
+	 * filtering the data using the sql query.
+	 * It returns the data in the json format.
+	 * 
+	 */
+	
 	@Override
 	public ResponseEntity<Object> query3() {
 		
@@ -112,17 +147,24 @@ public class QueryServiceImpl implements QueryService{
 		
 	}
 
+	/**
+	 * This function returns the data from the database after 
+	 * filtering the data using the sql query.
+	 * It returns the data in the json format.
+	 * 
+	 */
+	
 	@Override
 	public ResponseEntity<Object> query4() {
 		
 		Qry = "	Select c.OrderID,\r\n"
-				+ "	a.CompanyName,\r\n"
-				+ "    a.ContactName,\r\n"
-				+ "    d.ProductName,\r\n"
-				+ "    c.ProductID,\r\n"
-				+ "    c.UnitPrice,\r\n"
-				+ "	c.Quantity,\r\n"
-				+ "    c.Discount\r\n"
+				+ "a.CompanyName,\r\n"
+				+ "a.ContactName,\r\n"
+				+ "d.ProductName,\r\n"
+				+ "c.ProductID,\r\n"
+				+ "c.UnitPrice,\r\n"
+				+ "c.Quantity,\r\n"
+				+ "c.Discount\r\n"
 				+ "from Customers as a inner join Orders as b \r\n"
 				+ "on a.CustomerID = b.CustomerID inner join `Order Details` as c \r\n"
 				+ "on b.OrderID = c.OrderID inner join Products as d \r\n"
@@ -132,6 +174,13 @@ public class QueryServiceImpl implements QueryService{
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 		
 	}
+	
+	/**
+	 * This function returns the data from the database after 
+	 * filtering the data using the sql query.
+	 * It returns the data in the json format.
+	 * 
+	 */
 
 	@Override
 	public ResponseEntity<Object> query5() {
@@ -148,6 +197,13 @@ public class QueryServiceImpl implements QueryService{
 		Object ans = jdbcTemplate.queryForList(Qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
+	
+	/**
+	 * This function returns the data from the database after 
+	 * filtering the data using the sql query.
+	 * It returns the data in the json format.
+	 * 
+	 */
 
 	@Override
 	public ResponseEntity<Object> query6() {
@@ -158,6 +214,13 @@ public class QueryServiceImpl implements QueryService{
 		Object ans = jdbcTemplate.queryForList(Qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
+	
+	/**
+	 * This function returns the data from the database after 
+	 * filtering the data using the sql query.
+	 * It returns the data in the json format.
+	 * 
+	 */
 
 	@Override
 	public ResponseEntity<Object> query7() {
@@ -167,6 +230,13 @@ public class QueryServiceImpl implements QueryService{
 		Object ans = jdbcTemplate.queryForList(Qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
+	
+	/**
+	 * This function returns the data from the database after 
+	 * filtering the data using the sql query.
+	 * It returns the data in the json format.
+	 * 
+	 */
 
 	@Override
 	public ResponseEntity<Object> query8() {
@@ -176,6 +246,13 @@ public class QueryServiceImpl implements QueryService{
 		Object ans = jdbcTemplate.queryForList(Qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
+	
+	/**
+	 * This function returns the data from the database after 
+	 * filtering the data using the sql query.
+	 * It returns the data in the json format.
+	 * 
+	 */
 
 	@Override
 	public ResponseEntity<Object> query9() {
@@ -185,6 +262,13 @@ public class QueryServiceImpl implements QueryService{
 		Object ans = jdbcTemplate.queryForList(Qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
+	
+	/**
+	 * This function returns the data from the database after 
+	 * filtering the data using the sql query.
+	 * It returns the data in the json format.
+	 * 
+	 */
 
 	@Override
 	public ResponseEntity<Object> query10() {
@@ -194,6 +278,13 @@ public class QueryServiceImpl implements QueryService{
 		Object ans = jdbcTemplate.queryForList(Qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
+	
+	/**
+	 * This function returns the data from the database after 
+	 * filtering the data using the sql query.
+	 * It returns the data in the json format.
+	 * 
+	 */
 
 	@Override
 	public ResponseEntity<Object> query11() {

@@ -7,6 +7,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.airlinq.Project_Informica.model.JwtRequest;
 import com.airlinq.Project_Informica.model.JwtResponse;
 
+/**
+ * This QueryService interface declares all the required function needed in QueryServiceImpl class.
+ * 
+ * @author Ankit Sharma
+ * @version 1.0
+ *
+ */
+
 @Service
 public interface QueryService {
 	

@@ -18,6 +18,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * 
+ * This JwtFilter class filters all the requests by the client.
+ * It validates the token and filters the request.
+ * 
+ * @author Ankit Sharma
+ * @version 1.0
+ *
+ */
+
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
@@ -26,15 +36,18 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Autowired
     private UserService userService;
-
+    
+    /**
+     * The doFilterInternal function authorize the request and validates the token.
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         String authorization = httpServletRequest.getHeader("Authorization");
         String token = null;
         String userName = null;
 
-        if(null != authorization && authorization.startsWith("Bearer ")) {
-            token = authorization.substring(7);
+        if(null != authorization){
+            token = authorization;
             userName = jwtUtility.getUsernameFromToken(token);
         }
 
