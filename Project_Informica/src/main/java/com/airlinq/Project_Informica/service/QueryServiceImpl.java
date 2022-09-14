@@ -20,7 +20,7 @@ import com.airlinq.Project_Informica.utility.JwtUtility;
  * All the methods in this class will be invoked by the controller class
  * for accepting the request and giving the response.
  * 
- * @author Ankit Sharma
+ * @author Mahi Kumawat
  * @version 1.0
  *
  */
