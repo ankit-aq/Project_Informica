@@ -1,4 +1,4 @@
-package com.airlinq.Project_Informica.service;
+package com.airlinq.Project_Informica.service.usercredentials_service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.airlinq.Project_Informica.config.JwtAuthenticationEntryPoint;
+import com.airlinq.Project_Informica.exception.UnauthorizedAccessException;
+
+import net.bytebuddy.implementation.bytecode.Throw;
 
 /**
  * This UserService class checks the credentials in the database and return the response.
@@ -22,7 +25,7 @@ import com.airlinq.Project_Informica.config.JwtAuthenticationEntryPoint;
  */
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserCredentialsService implements UserDetailsService {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -43,33 +46,32 @@ public class UserService implements UserDetailsService {
 	 */
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UnauthorizedAccessException {
 		
 		
-		Qry = "Select email, password from User_Details where email = \"" + username + "\";";
+		Qry = "Select user_email, password from user_details where user_email = \"" + username + "\";";
 		
 		try {
 			
 			List<Map<String, Object>> ans = jdbcTemplate.queryForList(Qry);
 			
-			dbusername = ans.get(0).get("email").toString();
+			dbusername = ans.get(0).get("user_email").toString();
 			dbpassword = ans.get(0).get("password").toString();
 			
 			
 			if(dbusername != null) {
-				
+		
 				return new User(dbusername, dbpassword, new ArrayList<>());
 			}
 			else {
 				
-				entryPoint.commence(null, null, null);
-				throw new UsernameNotFoundException("User not found !!");
+				throw new UnauthorizedAccessException("User not found");
 			}
 			
 		}
 		catch (Exception e) {
 
-			throw new UsernameNotFoundException("User not found !!");
+			throw new UnauthorizedAccessException("User not found !!");
 		}
 		
 		

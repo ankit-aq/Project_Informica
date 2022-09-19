@@ -9,7 +9,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.airlinq.Project_Informica.service.UserService;
+import com.airlinq.Project_Informica.service.usercredentials_service.UserCredentialsService;
 import com.airlinq.Project_Informica.utility.JwtUtility;
 
 import javax.servlet.FilterChain;
@@ -35,7 +35,7 @@ public class JwtFilter extends OncePerRequestFilter {
     private JwtUtility jwtUtility;
 
     @Autowired
-    private UserService userService;
+    private UserCredentialsService userCredentialsService;
     
     /**
      * The doFilterInternal function authorize the request and validates the token.
@@ -46,14 +46,14 @@ public class JwtFilter extends OncePerRequestFilter {
         String token = null;
         String userName = null;
 
-        if(null != authorization){
+        if(authorization != null){
             token = authorization;
             userName = jwtUtility.getUsernameFromToken(token);
         }
 
-        if(null != userName && SecurityContextHolder.getContext().getAuthentication() == null) {
+        if(userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails
-                    = userService.loadUserByUsername(userName);
+                    = userCredentialsService.loadUserByUsername(userName);
 
             if(jwtUtility.validateToken(token,userDetails)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken

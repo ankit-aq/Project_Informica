@@ -12,7 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.airlinq.Project_Informica.filter.JwtFilter;
-import com.airlinq.Project_Informica.service.UserService;
+import com.airlinq.Project_Informica.service.usercredentials_service.UserCredentialsService;
 
 
 /**
@@ -29,7 +29,7 @@ import com.airlinq.Project_Informica.service.UserService;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
-	private UserService userService;
+	private UserCredentialsService userCredentialsService;
 	
 	@Autowired
 	private JwtAuthenticationEntryPoint entryPoint;
@@ -40,7 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
-		auth.userDetailsService(userService);
+		auth.userDetailsService(userCredentialsService);
 	}
 	
 	

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 /**
  * This JwtAuthenticationEntryPoint class returns the error codes if any exception occurs. 
  * 
- * @author ANkit Sharma
+ * @author Ankit Sharma
  * @version 1.0
  *
  */

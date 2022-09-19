@@ -1,4 +1,5 @@
-package com.airlinq.Project_Informica.service;
+package com.airlinq.Project_Informica.service.db_query_service;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,8 +12,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.airlinq.Project_Informica.exception.ResourceNotFoundException;
+import com.airlinq.Project_Informica.exception.UnauthorizedAccessException;
 import com.airlinq.Project_Informica.model.JwtRequest;
 import com.airlinq.Project_Informica.model.JwtResponse;
+import com.airlinq.Project_Informica.service.roles_service.UserRolesAccess;
+import com.airlinq.Project_Informica.service.usercredentials_service.UserCredentialsService;
 import com.airlinq.Project_Informica.utility.JwtUtility;
 
 /**
@@ -26,7 +31,7 @@ import com.airlinq.Project_Informica.utility.JwtUtility;
  */
 
 @Service
-public class QueryServiceImpl implements QueryService{
+public class DbQueryServiceImpl implements DbQueryService{
 
 	//Variable to store query
 	String Qry;
@@ -41,7 +46,10 @@ public class QueryServiceImpl implements QueryService{
 	private AuthenticationManager authenticationManager;
 	
 	@Autowired
-	private UserService userService;
+	private UserCredentialsService userCredentialsService;
+	
+	@Autowired
+	private UserRolesAccess userRolesAccess;
 	
 	
 	/**
@@ -61,11 +69,11 @@ public class QueryServiceImpl implements QueryService{
 			);
 		}
 		catch (BadCredentialsException e) {
-			throw new Exception("INVALID_CREDENTIALS", e);
+			throw new UnauthorizedAccessException("Invalid_CREDENTIALS");
 		}
 		
 		final UserDetails userDetails
-				= userService.loadUserByUsername(jwtRequest.getUsername());
+				= userCredentialsService.loadUserByUsername(jwtRequest.getUsername());
 		
 		final String token
 				= jwtUtility.generateToken(userDetails);
@@ -83,7 +91,11 @@ public class QueryServiceImpl implements QueryService{
 	 */
 
 	@Override
-	public ResponseEntity<Object> query1() {
+	public ResponseEntity<Object> supplier_Products() {
+		
+		if(userRolesAccess.permission("supplier_Products") != true) {
+			throw new ResourceNotFoundException("You do not have permission for this API");
+		}
 		
 		Qry = "Select Products.ProductID, Suppliers.SupplierId, Suppliers.ContactName, "
 				+ "Products.ProductName, Products.UnitPrice from Products, Suppliers "
@@ -104,7 +116,11 @@ public class QueryServiceImpl implements QueryService{
 	 * 
 	 */
 	@Override
-	public ResponseEntity<Object> query2() {
+	public ResponseEntity<Object> category_Products_Price() {
+		
+		if(userRolesAccess.permission("category_Products_Price") != true) {
+			throw new ResourceNotFoundException("You do not have permission for this API");
+		}
 		
 		Qry = "Select categories.CategoryID ,"
 				+ "	categories.CategoryName,"
@@ -128,7 +144,11 @@ public class QueryServiceImpl implements QueryService{
 	 */
 	
 	@Override
-	public ResponseEntity<Object> query3() {
+	public ResponseEntity<Object> all_orders_details() {
+		
+		if(userRolesAccess.permission("all_orders_details") != true) {
+			throw new ResourceNotFoundException("You do not have permission for this API");
+		}
 		
 		Qry = "Select Orders.OrderID, Customers.CustomerID, "
 				+ "Customers.CompanyName, Customers.ContactName, "
@@ -155,7 +175,11 @@ public class QueryServiceImpl implements QueryService{
 	 */
 	
 	@Override
-	public ResponseEntity<Object> query4() {
+	public ResponseEntity<Object> particular_customer_order_details() {
+		
+		if(userRolesAccess.permission("particular_customer_order_details") != true) {
+			throw new ResourceNotFoundException("You do not have permission for this API");
+		}
 		
 		Qry = "	Select c.OrderID,\r\n"
 				+ "a.CompanyName,\r\n"
@@ -183,8 +207,12 @@ public class QueryServiceImpl implements QueryService{
 	 */
 
 	@Override
-	public ResponseEntity<Object> query5() {
+	public ResponseEntity<Object> supplier_products_in_a_row() {
 	
+		if(userRolesAccess.permission("supplier_products_in_a_row") != true) {
+			throw new ResourceNotFoundException("You do not have permission for this API");
+		}
+		
 		Qry ="Select Suppliers.SupplierID,\r\n"
 				+ "	Suppliers.CompanyName,\r\n"
 				+ "    Suppliers.ContactName,\r\n"
@@ -206,7 +234,11 @@ public class QueryServiceImpl implements QueryService{
 	 */
 
 	@Override
-	public ResponseEntity<Object> query6() {
+	public ResponseEntity<Object> total_price_function() {
+		
+		if(userRolesAccess.permission("total_price_function") != true) {
+			throw new ResourceNotFoundException("You do not have permission for this API");
+		}
 		
 		Qry = "Select Orders.OrderID, totalSum(Orders.OrderID) \r\n"
 				+ "from Orders order by Orders.OrderID";
@@ -223,7 +255,11 @@ public class QueryServiceImpl implements QueryService{
 	 */
 
 	@Override
-	public ResponseEntity<Object> query7() {
+	public ResponseEntity<Object> categories_table_trigger() {
+		
+		if(userRolesAccess.permission("categories_table_trigger") != true) {
+			throw new ResourceNotFoundException("You do not have permission for this API");
+		}
 		
 		 Qry = "Select * from Products";
 		
@@ -239,9 +275,13 @@ public class QueryServiceImpl implements QueryService{
 	 */
 
 	@Override
-	public ResponseEntity<Object> query8() {
+	public ResponseEntity<Object> vw_customers_order_view() {
 		
-		 Qry = "Select * from vw_customers_order";
+		if(userRolesAccess.permission("vw_customers_order_view") != true) {
+			throw new ResourceNotFoundException("You do not have permission for this API");
+		}
+		
+		Qry = "Select * from vw_customers_order";
 
 		Object ans = jdbcTemplate.queryForList(Qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
@@ -255,9 +295,13 @@ public class QueryServiceImpl implements QueryService{
 	 */
 
 	@Override
-	public ResponseEntity<Object> query9() {
+	public ResponseEntity<Object> stored_procedure_for_all_customer() {
 		
-		 Qry = "Select * from CustomerOrder";
+		if(userRolesAccess.permission("stored_procedure_for_all_customer") != true) {
+			throw new ResourceNotFoundException("You do not have permission for this API");
+		}
+		
+		Qry = "Select * from CustomerOrder";
 	
 		Object ans = jdbcTemplate.queryForList(Qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
@@ -271,7 +315,11 @@ public class QueryServiceImpl implements QueryService{
 	 */
 
 	@Override
-	public ResponseEntity<Object> query10() {
+	public ResponseEntity<Object> stored_procedure_for_particular_customer() {
+		
+		if(userRolesAccess.permission("stored_procedure_for_particular_customer") != true) {
+			throw new ResourceNotFoundException("You do not have permission for this API");
+		}
 		
 		Qry = "Select * from CustomerDetails";
 		
@@ -287,12 +335,16 @@ public class QueryServiceImpl implements QueryService{
 	 */
 
 	@Override
-	public ResponseEntity<Object> query11() {
+	public ResponseEntity<Object> stored_procedure_with_loop() {
+		
+		if(userRolesAccess.permission("stored_procedure_with_loop") != true) {
+			throw new ResourceNotFoundException("You do not have permission for this API");
+		}
 		
 		Qry = "Select * from AllOrders;" ;
 	
 		Object ans = jdbcTemplate.queryForList(Qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
-
+	
 }
