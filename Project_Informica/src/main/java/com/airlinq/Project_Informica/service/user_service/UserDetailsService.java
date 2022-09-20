@@ -10,7 +10,7 @@ import com.airlinq.Project_Informica.entities.User_Details;
 /**
  * This UserDetailsService interface declares all the required function needed in UserDetailsServiceImpl class.
  * 
- * @author Ankit Sharma
+ * @author Mahi Kumawat
  * @version 1.0
  *
  */

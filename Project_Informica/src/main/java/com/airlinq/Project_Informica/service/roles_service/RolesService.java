@@ -7,6 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.airlinq.Project_Informica.entities.Role_Access;
 
+/**
+ * This RolesService interface declares all the required function needed in RolesServiceImpl class.
+ * 
+ * @author Ankit Sharma
+ * @version 1.0
+ *
+ */
+
 @Service
 public interface RolesService {
 

@@ -11,6 +11,13 @@ import org.springframework.stereotype.Service;
 
 import com.airlinq.Project_Informica.utility.JwtUtility;
 
+/**
+ * This UserRolesAccess class defines permission method where it check if the user have access
+ * to the API.
+ * 
+ * @author Ankit Sharma
+ * @version 1.0
+ */
 @Service
 public class UserRolesAccess {
 	
@@ -28,8 +35,15 @@ public class UserRolesAccess {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	
+	/**
+	 * The method checks if the user has access to the API.
+	 * It returns false if the user has not access to the API.
+	 * 
+	 * @param queryName
+	 * @return boolean value
+	 */
 	public boolean permission(String queryName) {
-		System.out.println("Wuff");
 		authorization = httpServletRequest.getHeader("Authorization");
 	    token = null;
 	    user_email = null;
@@ -43,7 +57,7 @@ public class UserRolesAccess {
 			
 	    List<Map<String, Object>> user_details = jdbcTemplate.queryForList(qry);
 	     
-	    if(user_details.get(0).get("roles") == "admin") {
+	    if(user_details.get(0).get("roles").equals("admin")) {
 	    	return true;
 	    }
 	    else {
@@ -53,7 +67,6 @@ public class UserRolesAccess {
 		    List<Map<String, Object>> query_details = jdbcTemplate.queryForList(qry);
 
 		    if(query_details.isEmpty() == true) {
-		    	System.out.println("Finally2");
 		    	return false;
 		    }
 	    	 

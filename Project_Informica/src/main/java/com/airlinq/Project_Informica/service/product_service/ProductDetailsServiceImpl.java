@@ -13,6 +13,16 @@ import com.airlinq.Project_Informica.entities.Products;
 import com.airlinq.Project_Informica.exception.ResourceNotFoundException;
 import com.airlinq.Project_Informica.service.roles_service.UserRolesAccess;
 
+/**
+ * The ProductDetailsServiceImpl class defines all the ProductDetailsService interface methods.
+ * All the methods in this class will be invoked by the controller class
+ * for accepting the request and giving the response.
+ * 
+ * @author Adarsh Kumar Jha
+ * @version 1.0
+ *
+ */
+
 @Service
 public class ProductDetailsServiceImpl implements ProductDetailsService{
 	
@@ -27,7 +37,9 @@ public class ProductDetailsServiceImpl implements ProductDetailsService{
 	@Autowired
 	private UserRolesAccess userRolesAccess;
 	
-	
+	/**
+	 * The function getAllProductDetails fetches all products details from the database.
+	 */
 
 	@Override
 	public ResponseEntity<List<Products>> getAllProductDetails() {
@@ -40,6 +52,10 @@ public class ProductDetailsServiceImpl implements ProductDetailsService{
 		return new ResponseEntity<>(datalist, HttpStatus.OK);
 	}
 
+	
+	/**
+	 * The function getProductDetail fetches particular product details from the database.
+	 */
 	@Override
 	public ResponseEntity<Products> getProductDetails(String product_Id) {
 		
@@ -50,6 +66,10 @@ public class ProductDetailsServiceImpl implements ProductDetailsService{
 		return new ResponseEntity<>(productData, HttpStatus.OK);
 	}
 
+	/**
+	 * The function addProductDetail adds new product in the database.
+	 */
+	
 	@Override
 	public ResponseEntity<Products> addProductDetails(Products productDetails) {
 		
@@ -60,6 +80,10 @@ public class ProductDetailsServiceImpl implements ProductDetailsService{
 		return new ResponseEntity<>(productDetails, HttpStatus.OK);
 	}
 
+	
+	/**
+	 * The function deleteProductDetail deletes the product from the database.
+	 */
 	@Override
 	public ResponseEntity<String> deleteProductDetails(String productId) {
 		

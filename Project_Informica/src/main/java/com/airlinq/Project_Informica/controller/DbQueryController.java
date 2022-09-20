@@ -13,7 +13,7 @@ import com.airlinq.Project_Informica.model.JwtResponse;
 import com.airlinq.Project_Informica.service.db_query_service.DbQueryServiceImpl;
 
 /**
- * This controller class accepts all the http requests and send the response.
+ * This controller class accepts all the http requests for the database queries of the database assignment and send the response.
  * 
  * @author Adarsh Kumar Jha
  * @version 1.0

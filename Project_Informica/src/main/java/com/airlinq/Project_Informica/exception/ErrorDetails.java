@@ -2,6 +2,15 @@ package com.airlinq.Project_Informica.exception;
 
 import java.util.Date;
 
+
+
+/**
+ * The ErrorDetails entity class stores the error details when the exception occurs.
+ * 
+ * @author Ankit Sharma
+ * @version 1.0
+ */
+
 public class ErrorDetails {
 	
 	private Date timestamp;

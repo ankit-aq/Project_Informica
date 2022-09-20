@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * This class User_Details used to store data
+ * This class User_Details is an entity class used to store data
  * in the same format present in the database user_details table. 
  * 
  * @author Mahi Kumawat

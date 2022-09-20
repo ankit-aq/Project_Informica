@@ -15,6 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.airlinq.Project_Informica.entities.User_Details;
 import com.airlinq.Project_Informica.service.user_service.UserDetailsServiceImpl;
 
+/**
+ * This UserDetailsController class is a controller class for User_Details entity class.
+ * This controller class accepts all the HTTP requests for user_details table and send the response.  
+ * 
+ * @author Mahi Kumawat 
+ * @version 1.0
+ *
+ */
+
 @RestController
 public class UserDetailsController {
 	
@@ -53,6 +62,11 @@ public class UserDetailsController {
 		System.out.println("Hello");
 		return this.userDetailsServiceImpl.addUserDetail(userdetails);
 	}
+	
+	/**
+	 * API for deleting user details in the user_details table in the database using user_email.
+	 * 
+	 */
 	
 	@DeleteMapping(path="/deleteUserDetails/{user_email}")
     public ResponseEntity<String> deleteUserDetails(@PathVariable String user_email) {

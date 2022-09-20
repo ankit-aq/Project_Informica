@@ -3,6 +3,14 @@ package com.airlinq.Project_Informica.entities;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * This class Role_access is an entity class used to store data
+ * in the same format present in the database role_access table. 
+ * 
+ * @author Ankit Sharma
+ * @version 1.0
+ */
+
 @Entity
 public class Role_Access {
 	

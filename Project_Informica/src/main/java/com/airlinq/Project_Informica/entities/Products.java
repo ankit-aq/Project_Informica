@@ -7,6 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * This class Products is an entity class used to store data
+ * in the same format present in the database products table. 
+ * 
+ * @author Adarsh kumar jha
+ * @version 1.0
+ */
 
 @Entity
 @Table(name="Products")
