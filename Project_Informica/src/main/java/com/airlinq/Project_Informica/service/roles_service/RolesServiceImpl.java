@@ -61,7 +61,7 @@ public class RolesServiceImpl implements RolesService{
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		qry = "Select * from role_access where user_email = " + user_email + ";";
+		qry = "Select * from role_access where email = " + user_email + ";";
 		
 		List<Map<String, Object>> roles_details = jdbcTemplate.queryForList(qry);
 		

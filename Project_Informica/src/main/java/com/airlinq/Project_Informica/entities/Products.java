@@ -2,8 +2,6 @@ package com.airlinq.Project_Informica.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,17 +18,34 @@ import javax.persistence.Table;
 public class Products {
 	
 	@Id
-	@Column(name="ProductId")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ProductID")
 	private Integer productId;
+	
+	@Column(name="ProductName")
 	private String productName;
+	
+	@Column(name="SupplierID")
 	private Integer supplierId;
+	
+	@Column(name="CategoryID")
 	private Integer categoryId;
+	
+	@Column(name="QuantityPerUnit")
 	private String quantityPerUnit;
+	
+	@Column(name="UnitPrice")
 	private double unitPrice;
+	
+	@Column(name="UnitsInStock")
 	private short unitsInStock;
+	
+	@Column(name="UnitsOnOrder")
 	private short unitsOnOrder;
+	
+	@Column(name="ReorderLevel")
 	private short reorderLevel;
+	
+	@Column(name="Discontinued")
 	private boolean discontinued;
 	
 	public Products() {

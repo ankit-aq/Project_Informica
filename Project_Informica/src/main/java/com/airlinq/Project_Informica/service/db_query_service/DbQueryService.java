@@ -21,9 +21,9 @@ public interface DbQueryService {
 	
 	public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception;
 	
-	public ResponseEntity<Object>supplier_Products();
+	public ResponseEntity<Object>supplier_products();
 	
-	public ResponseEntity<Object>category_Products_Price();
+	public ResponseEntity<Object>category_products_price();
 	
 	public ResponseEntity<Object>all_orders_details();
 	

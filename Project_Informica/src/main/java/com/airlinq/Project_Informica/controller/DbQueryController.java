@@ -45,9 +45,9 @@ public class DbQueryController {
 	 * 
 	 */
 	@GetMapping(path="/supplier_products")
-	public ResponseEntity<Object>supplier_Products(){
+	public ResponseEntity<Object>supplier_products(){
 		
-		return this.dbQueryServiceImpl.supplier_Products();
+		return this.dbQueryServiceImpl.supplier_products();
 	}
 	
 	/**
@@ -55,9 +55,9 @@ public class DbQueryController {
 	 * 
 	 */
 	@GetMapping(path="/category_products_price")
-	public ResponseEntity<Object>category_Products_Price(){
+	public ResponseEntity<Object>category_products_price(){
 		
-		return this.dbQueryServiceImpl.category_Products_Price();
+		return this.dbQueryServiceImpl.category_products_price();
 	}
 	
 	/**

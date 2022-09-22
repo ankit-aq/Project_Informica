@@ -91,16 +91,16 @@ public class DbQueryServiceImpl implements DbQueryService{
 	 */
 
 	@Override
-	public ResponseEntity<Object> supplier_Products() {
+	public ResponseEntity<Object> supplier_products() {
 		
-		if(userRolesAccess.permission("supplier_Products") != true) {
+		if(userRolesAccess.permission("supplier_products") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		Qry = "Select Products.ProductID, Suppliers.SupplierId, Suppliers.ContactName, "
-				+ "Products.ProductName, Products.UnitPrice from Products, Suppliers "
-				+ "where Products.SupplierID = Suppliers.SupplierID "
-				+ "order by Products.UnitPrice Asc;";
+		Qry = "Select products.productid, Suppliers.supplierid, Suppliers.ContactName, "
+				+ "products.product_name, products.unit_price from products, Suppliers "
+				+ "where products.supplierid = Suppliers.supplierid "
+				+ "order by products.unit_price Asc;";
 
 	
 		Object ans = jdbcTemplate.queryForList(Qry);
@@ -116,18 +116,18 @@ public class DbQueryServiceImpl implements DbQueryService{
 	 * 
 	 */
 	@Override
-	public ResponseEntity<Object> category_Products_Price() {
+	public ResponseEntity<Object> category_products_price() {
 		
-		if(userRolesAccess.permission("category_Products_Price") != true) {
+		if(userRolesAccess.permission("category_products_Price") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		Qry = "Select categories.CategoryID ,"
+		Qry = "Select categories.categoryid ,"
 				+ "	categories.CategoryName,"
-				+ " Sum(products.UnitPrice) as TotalPrice "
-				+ "from Categories as categories , Products as products "
-				+ "where categories.CategoryID = products.CategoryID "
-				+ "group by categories.CategoryID "
+				+ " Sum(products.unit_price) as TotalPrice "
+				+ "from Categories as categories , products as products "
+				+ "where categories.categoryid = products.categoryid "
+				+ "group by categories.categoryid "
 				+ "order by TotalPrice ASC;";
 
 	
@@ -184,15 +184,15 @@ public class DbQueryServiceImpl implements DbQueryService{
 		Qry = "	Select c.OrderID,\r\n"
 				+ "a.CompanyName,\r\n"
 				+ "a.ContactName,\r\n"
-				+ "d.ProductName,\r\n"
-				+ "c.ProductID,\r\n"
-				+ "c.UnitPrice,\r\n"
+				+ "d.product_name,\r\n"
+				+ "c.productid,\r\n"
+				+ "c.unit_price,\r\n"
 				+ "c.Quantity,\r\n"
 				+ "c.Discount\r\n"
 				+ "from Customers as a inner join Orders as b \r\n"
 				+ "on a.CustomerID = b.CustomerID inner join `Order Details` as c \r\n"
-				+ "on b.OrderID = c.OrderID inner join Products as d \r\n"
-				+ "on c.ProductID = d.ProductID;";
+				+ "on b.OrderID = c.OrderID inner join products as d \r\n"
+				+ "on c.productid = d.productid;";
 
 		Object ans = jdbcTemplate.queryForList(Qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
@@ -213,13 +213,13 @@ public class DbQueryServiceImpl implements DbQueryService{
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		Qry ="Select Suppliers.SupplierID,\r\n"
+		Qry ="Select Suppliers.supplierid,\r\n"
 				+ "	Suppliers.CompanyName,\r\n"
 				+ "    Suppliers.ContactName,\r\n"
-				+ "    Group_Concat(Products.ProductName)\r\n"
-				+ "from Suppliers right join Products\r\n"
-				+ "on Suppliers.SupplierID = Products.SupplierId\r\n"
-				+ "Group By Suppliers.SupplierID;";
+				+ "    Group_Concat(products.product_name)\r\n"
+				+ "from Suppliers right join products\r\n"
+				+ "on Suppliers.supplierid = products.supplierid\r\n"
+				+ "Group By Suppliers.supplierid;";
 
 	
 		Object ans = jdbcTemplate.queryForList(Qry);
@@ -261,7 +261,7 @@ public class DbQueryServiceImpl implements DbQueryService{
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		 Qry = "Select * from Products";
+		 Qry = "Select * from products";
 		
 		Object ans = jdbcTemplate.queryForList(Qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
