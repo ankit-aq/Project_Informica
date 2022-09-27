@@ -56,13 +56,13 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	 * The function getUserDetail fetches particular user details from the database.
 	 */
 	@Override
-	public ResponseEntity<Object> getUserDetail(String user_email) {
+	public ResponseEntity<Object> getUserDetails(int user_id) {
 		
 		if(userRolesAccess.permission("getUserDetail") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		qry = "Select * from user_details where user_email = " + user_email + ";";
+		qry = "Select * from user_details where id = " + user_id+ ";";
 		
 		List<Map<String, Object>> user_details = jdbcTemplate.queryForList(qry);
 		
@@ -79,9 +79,9 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	 * The function addUserDetail adds new user in the database.
 	 */
 	@Override
-	public ResponseEntity<User_Details> addUserDetail(User_Details userdetails) {
+	public ResponseEntity<User_Details> addUserDetails(User_Details userdetails) {
 		
-		if(userRolesAccess.permission("addUserDetail") != true) {
+		if(userRolesAccess.permission("addUserDetails") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
@@ -94,13 +94,13 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	 * The function deleteUserDetail deletes the user from the database.
 	 */
 	@Override
-	public ResponseEntity<String> deleteUserDetails(String user_email) {
+	public ResponseEntity<String> deleteUserDetails(int user_id) {
 		
 		if(userRolesAccess.permission("deleteUserDetails") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		qry = "Delete from user_details where user_email = " + user_email +";"; 
+		qry = "Delete from user_details where id = " + user_id +";"; 
 		jdbcTemplate.execute(qry);
 		return new ResponseEntity<>("User Deleted!",HttpStatus.OK);
 	}

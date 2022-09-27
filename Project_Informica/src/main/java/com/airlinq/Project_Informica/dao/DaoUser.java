@@ -12,6 +12,6 @@ import com.airlinq.Project_Informica.entities.User_Details;
  * @version 1.0
  */
 
-public interface DaoUser extends JpaRepository<User_Details, String>{
+public interface DaoUser extends JpaRepository<User_Details, Integer>{
 
 }

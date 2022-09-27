@@ -45,10 +45,15 @@ public class JwtFilter extends OncePerRequestFilter {
         String authorization = httpServletRequest.getHeader("Authorization");
         String token = null;
         String userName = null;
+        String password = null;
 
         if(authorization != null){
             token = authorization;
             userName = jwtUtility.getUsernameFromToken(token);
+            password = jwtUtility.getPasswordFromToken(token);
+            System.out.println("Huff");
+            System.out.println(userName);
+            System.out.println(password);
         }
 
         if(userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {

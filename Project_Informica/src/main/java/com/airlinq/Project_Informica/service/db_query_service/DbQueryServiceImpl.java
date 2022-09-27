@@ -34,7 +34,9 @@ import com.airlinq.Project_Informica.utility.JwtUtility;
 public class DbQueryServiceImpl implements DbQueryService{
 
 	//Variable to store query
-	String Qry;
+	private String Qry;
+	
+	private String userRoleName;
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -72,8 +74,10 @@ public class DbQueryServiceImpl implements DbQueryService{
 			throw new UnauthorizedAccessException("Invalid_CREDENTIALS");
 		}
 		
+		userRoleName = userCredentialsService.usernameRole(jwtRequest.getUsername(), jwtRequest.getRoleName());
+				
 		final UserDetails userDetails
-				= userCredentialsService.loadUserByUsername(jwtRequest.getUsername());
+				= userCredentialsService.loadUserData(userRoleName);
 		
 		final String token
 				= jwtUtility.generateToken(userDetails);

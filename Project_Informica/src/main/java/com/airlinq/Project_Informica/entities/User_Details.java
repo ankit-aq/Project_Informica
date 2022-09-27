@@ -1,14 +1,10 @@
 package com.airlinq.Project_Informica.entities;
 
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -23,33 +19,44 @@ import javax.persistence.Table;
 @Table(name="user_details")
 public class User_Details {
 	
-	private long id;
 	@Id
-	private String user_email;
-	private String first_name;
-	private String last_name;
-	private String password;
-	private String roles;
+	@GeneratedValue
+	@Column(name="id")
+	private long id;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="email", referencedColumnName="user_email", foreignKey = @ForeignKey(name = "fk_user_role"))
-	private List<Role_Access> roles_access;
+	@Column(name="first_name")
+	private String first_name;
 
+	@Column(name="last_name")
+	private String last_name;
+	
+	@Column(name="alias")
+	private String alias;
+	
+	@Column(name="email")
+	private String email;
+	
+	@Column(name="password")
+	private String password;
+	
+	@Column(name="role_id")
+	private String role_id;
+	
 	public User_Details() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public User_Details(long id, String user_email, String first_name, String last_name, String password, String roles,
-			List<Role_Access> roles_access) {
+	public User_Details(long id, String first_name, String last_name, String alias, String email, String password,
+			String role_id) {
 		super();
 		this.id = id;
-		this.user_email = user_email;
 		this.first_name = first_name;
 		this.last_name = last_name;
+		this.alias = alias;
+		this.email = email;
 		this.password = password;
-		this.roles = roles;
-		this.roles_access = roles_access;
+		this.role_id = role_id;
 	}
 
 	public long getId() {
@@ -58,14 +65,6 @@ public class User_Details {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getUser_email() {
-		return user_email;
-	}
-
-	public void setUser_email(String user_email) {
-		this.user_email = user_email;
 	}
 
 	public String getFirst_name() {
@@ -84,6 +83,22 @@ public class User_Details {
 		this.last_name = last_name;
 	}
 
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -92,20 +107,12 @@ public class User_Details {
 		this.password = password;
 	}
 
-	public String getRoles() {
-		return roles;
+	public String getRole_id() {
+		return role_id;
 	}
 
-	public void setRoles(String roles) {
-		this.roles = roles;
-	}
-
-	public List<Role_Access> getRoles_access() {
-		return roles_access;
-	}
-
-	public void setRoles_access(List<Role_Access> roles_access) {
-		this.roles_access = roles_access;
+	public void setRole_id(String role_id) {
+		this.role_id = role_id;
 	}
 
 	

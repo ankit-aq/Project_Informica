@@ -47,9 +47,9 @@ public class UserDetailsController {
 	 * 
 	 */
 	
-	@RequestMapping(value = "/getUserDetail/{user_email}", method = RequestMethod.GET)
-	public ResponseEntity<Object> getUserDetail(@PathVariable String user_email){
-		return this.userDetailsServiceImpl.getUserDetail(user_email.toString());
+	@RequestMapping(value = "/getUserDetails/{user_id}", method = RequestMethod.GET)
+	public ResponseEntity<Object> getUserDetails(@PathVariable int user_id){
+		return this.userDetailsServiceImpl.getUserDetails(user_id);
 	}
 	
 	/**
@@ -57,10 +57,10 @@ public class UserDetailsController {
 	 * 
 	 */
 	
-	@RequestMapping(value = "/addUserDetail", method = { RequestMethod.GET, RequestMethod.POST })
-	public ResponseEntity<User_Details> addUserDetail(@RequestBody User_Details userdetails){
+	@RequestMapping(value = "/addUserDetails", method = { RequestMethod.GET, RequestMethod.POST })
+	public ResponseEntity<User_Details> addUserDetails(@RequestBody User_Details userdetails){
 		System.out.println("Hello");
-		return this.userDetailsServiceImpl.addUserDetail(userdetails);
+		return this.userDetailsServiceImpl.addUserDetails(userdetails);
 	}
 	
 	/**
@@ -68,10 +68,10 @@ public class UserDetailsController {
 	 * 
 	 */
 	
-	@DeleteMapping(path="/deleteUserDetails/{user_email}")
-    public ResponseEntity<String> deleteUserDetails(@PathVariable String user_email) {
+	@DeleteMapping(path="/deleteUserDetails/{user_id}")
+    public ResponseEntity<String> deleteUserDetails(@PathVariable int user_id) {
 
-		return this.userDetailsServiceImpl.deleteUserDetails(user_email.toString());
+		return this.userDetailsServiceImpl.deleteUserDetails(user_id);
     }
 	
 }

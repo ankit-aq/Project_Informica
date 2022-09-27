@@ -90,7 +90,7 @@ public class ProductDetailsServiceImpl implements ProductDetailsService{
 		if(userRolesAccess.permission("deleteProductDetails") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
-		qry = "Delete from products where product_id = " + Integer.parseInt(productId) +";"; 
+		qry = "Delete from products where productid = " + Integer.parseInt(productId) +";"; 
 		jdbcTemplate.execute(qry);
 		return new ResponseEntity<>("User Deleted!",HttpStatus.OK);
 	}

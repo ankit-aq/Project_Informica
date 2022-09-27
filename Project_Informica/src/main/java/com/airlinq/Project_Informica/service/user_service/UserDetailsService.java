@@ -20,9 +20,9 @@ public interface UserDetailsService {
 
 	public ResponseEntity<List<User_Details>> getAllUserDetails();
 	
-	public ResponseEntity<Object> getUserDetail(String user_email);
+	public ResponseEntity<Object> getUserDetails(int user_id);
 	
-	public ResponseEntity<User_Details> addUserDetail(User_Details User_Details);
+	public ResponseEntity<User_Details> addUserDetails(User_Details User_Details);
 	
-	public ResponseEntity<String> deleteUserDetails(String user_email);
+	public ResponseEntity<String> deleteUserDetails(int user_id);
 }

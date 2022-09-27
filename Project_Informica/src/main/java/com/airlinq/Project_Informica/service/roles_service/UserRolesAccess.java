@@ -24,6 +24,7 @@ public class UserRolesAccess {
 	String token;
 	String authorization;
 	String user_email;
+	String role_name;
 	String qry;
 	
 	@Autowired
@@ -51,20 +52,28 @@ public class UserRolesAccess {
 	    if(authorization != null){
 	    	token = authorization;
 	        user_email = jwtUtility.getUsernameFromToken(token);
+	        role_name = jwtUtility.getPasswordFromToken(token);
 	    }
 	     
-	    qry = "Select * from user_details where user_email = \"" + user_email + "\";";
+	    qry = "Select role_name from user_details inner join roles on user_details.role_id = roles.role_id "
+	    		+ "where user_details.email = \"" + user_email + "\" and role_name = \"" + role_name + "\";";
 			
 	    List<Map<String, Object>> user_details = jdbcTemplate.queryForList(qry);
+	    System.out.println(user_details);
 	     
-	    if(user_details.get(0).get("roles").equals("admin")) {
+	    if(user_details.get(0).get("role_name").toString().equals("admin")) {
 	    	return true;
 	    }
 	    else {
 	    	 
-	    	qry = "Select * from role_access where user_email = \"" + user_email + "\" and query_name = \"" + queryName + "\";";
+	    	qry = "Select api_name from user_details inner join roles on user_details.role_id = roles.role_id "
+	    			+ "inner join roles_api_mapping on roles.role_id = roles_api_mapping.role_id "
+	    			+ "inner join api on roles_api_mapping.api_id = api.api_id "
+	    			+ "where email = \"" + user_email + "\" and role_name = \"" + role_name + "\"and api_name = \"" + queryName + "\";";
+	    	
 				
 		    List<Map<String, Object>> query_details = jdbcTemplate.queryForList(qry);
+		    
 
 		    if(query_details.isEmpty() == true) {
 		    	return false;

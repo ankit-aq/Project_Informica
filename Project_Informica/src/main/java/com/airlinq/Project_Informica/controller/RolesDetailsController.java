@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.airlinq.Project_Informica.entities.Role_Access;
+import com.airlinq.Project_Informica.entities.Roles;
 import com.airlinq.Project_Informica.service.roles_service.RolesServiceImpl;
 
 
@@ -35,7 +35,7 @@ public class RolesDetailsController {
 	 * 
 	 */
 	@GetMapping(path="/getAllRolesDetails")
-	public ResponseEntity<List<Role_Access>> getAllRolesDetails(){
+	public ResponseEntity<List<Roles>> getAllRolesDetails(){
 		
 		return this.rolesServiceImpl.getAllRolesDetails();
 	}
@@ -56,7 +56,7 @@ public class RolesDetailsController {
 	 */
 	
 	@PostMapping(path="/addRolesDetails")
-	public ResponseEntity<Role_Access> addRolesDetails(@RequestBody Role_Access roleAccess){
+	public ResponseEntity<Roles> addRolesDetails(@RequestBody Roles roleAccess){
 		return this.rolesServiceImpl.addRolesDetails(roleAccess);
 	}
 	

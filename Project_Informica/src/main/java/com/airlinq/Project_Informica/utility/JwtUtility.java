@@ -39,6 +39,10 @@ public class JwtUtility implements Serializable {
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
+    
+    public String getPasswordFromToken(String token) {
+        return getClaimFromToken(token, Claims::getAudience);
+    }
 
     /**
      * retrieve expiration date from jwt token
@@ -84,7 +88,7 @@ public class JwtUtility implements Serializable {
      */
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
-        return doGenerateToken(claims, userDetails.getUsername());
+        return doGenerateToken(claims, userDetails.getUsername(), userDetails.getPassword());
     }
 
 
@@ -97,8 +101,8 @@ public class JwtUtility implements Serializable {
      *  
      */
    
-    private String doGenerateToken(Map<String, Object> claims, String subject) {
-        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
+    private String doGenerateToken(Map<String, Object> claims, String subject_username, String subject_password) {
+        return Jwts.builder().setClaims(claims).setSubject(subject_username).setAudience(subject_password).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
                 .signWith(SignatureAlgorithm.HS512, secretKey).compact();
     }

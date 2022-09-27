@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import com.airlinq.Project_Informica.dao.DaoRoles;
-import com.airlinq.Project_Informica.entities.Role_Access;
+import com.airlinq.Project_Informica.entities.Roles;
 import com.airlinq.Project_Informica.exception.ResourceNotFoundException;
 
 /**
@@ -41,13 +41,13 @@ public class RolesServiceImpl implements RolesService{
 	 * The function getAllRolesDetails fetches all roles details from the database.
 	 */
 	@Override
-	public ResponseEntity<List<Role_Access>> getAllRolesDetails() {
+	public ResponseEntity<List<Roles>> getAllRolesDetails() {
 		
 		if(userRolesAccess.permission("getAllRolesDetails") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		List<Role_Access> datalist = daoRoles.findAll();
+		List<Roles> datalist = daoRoles.findAll();
 		return new ResponseEntity<>(datalist, HttpStatus.OK);
 	}
 
@@ -77,7 +77,7 @@ public class RolesServiceImpl implements RolesService{
 	 * The function addRolesDetails adds new role in the database.
 	 */
 	@Override
-	public ResponseEntity<Role_Access> addRolesDetails(Role_Access roleAccess) {
+	public ResponseEntity<Roles> addRolesDetails(Roles roleAccess) {
 		System.out.print("hss");
 		System.out.println(userRolesAccess.permission("addRolesDetails"));
 		if(userRolesAccess.permission("addRolesDetails") != true) {

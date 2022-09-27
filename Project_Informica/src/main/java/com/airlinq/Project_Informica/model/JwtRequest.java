@@ -20,12 +20,19 @@ public class JwtRequest {
 
 	private String username;
 	private String password;
+	private String roleName;
 	
 	public String getUsername() {
 		return username;
 	}
-	
 	public String getPassword() {
 		return password;
 	}
+	public String getRoleName() {
+		return roleName;
+	}
+	
+	
+	
+	
 }
