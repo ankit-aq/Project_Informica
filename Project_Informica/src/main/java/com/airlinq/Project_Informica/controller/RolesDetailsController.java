@@ -45,9 +45,9 @@ public class RolesDetailsController {
 	 * 
 	 */
 	
-	@GetMapping(path="/getRolesDetails/{user_email}")
-	public ResponseEntity<Object> getRolesDetail(@PathVariable String user_email){
-		return this.rolesServiceImpl.getRolesDetails(user_email.toString());
+	@GetMapping(path="/getRolesDetails/{role_id}")
+	public ResponseEntity<Object> getRolesDetail(@PathVariable int role_id){
+		return this.rolesServiceImpl.getRolesDetails(role_id);
 	}
 	
 	/**
@@ -56,8 +56,8 @@ public class RolesDetailsController {
 	 */
 	
 	@PostMapping(path="/addRolesDetails")
-	public ResponseEntity<Roles> addRolesDetails(@RequestBody Roles roleAccess){
-		return this.rolesServiceImpl.addRolesDetails(roleAccess);
+	public ResponseEntity<Roles> addRolesDetails(@RequestBody Roles roles){
+		return this.rolesServiceImpl.addRolesDetails(roles);
 	}
 	
 	
@@ -66,7 +66,7 @@ public class RolesDetailsController {
 	 * 
 	 */
 	@DeleteMapping(path="/deleteRolesDetails/{role_id}")
-    public ResponseEntity<String> deleteRolesDetails(@PathVariable String role_id) {
+    public ResponseEntity<String> deleteRolesDetails(@PathVariable int role_id) {
 
 		return this.rolesServiceImpl.deleteRolesDetails(role_id);
     }

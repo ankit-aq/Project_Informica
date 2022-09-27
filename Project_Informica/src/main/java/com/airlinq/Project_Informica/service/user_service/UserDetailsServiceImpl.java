@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.airlinq.Project_Informica.dao.DaoUser;
 import com.airlinq.Project_Informica.entities.User_Details;
 import com.airlinq.Project_Informica.exception.ResourceNotFoundException;
+import com.airlinq.Project_Informica.exception.UnauthorizedAccessException;
 import com.airlinq.Project_Informica.service.roles_service.UserRolesAccess;
 
 
@@ -85,8 +86,20 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		daouser.save(userdetails);
-		return new ResponseEntity<>(userdetails,HttpStatus.OK);
+
+		qry = "Select email, password from user_details where email = \"" + userdetails.getEmail() +  "\";";
+		List<Map<String, Object>> ans = jdbcTemplate.queryForList(qry);
+		
+		if(ans.isEmpty() == true || ans.get(0).get("password").equals(userdetails.getPassword())) {
+			
+			daouser.save(userdetails);
+			return new ResponseEntity<>(userdetails,HttpStatus.OK);
+		}
+		else {
+			throw new UnauthorizedAccessException("Invalid_Password");
+		}
+		
+		
 	}
 
 

@@ -55,13 +55,13 @@ public class RolesServiceImpl implements RolesService{
 	 * The function getRolesDetails fetches particular role details from the database.
 	 */
 	@Override
-	public ResponseEntity<Object> getRolesDetails(String user_email) {
+	public ResponseEntity<Object> getRolesDetails(int role_id) {
 		
 		if(userRolesAccess.permission("getRolesDetails") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		qry = "Select * from role_access where email = " + user_email + ";";
+		qry = "Select * from roles where role_id = " + role_id + ";";
 		
 		List<Map<String, Object>> roles_details = jdbcTemplate.queryForList(qry);
 		
@@ -77,15 +77,15 @@ public class RolesServiceImpl implements RolesService{
 	 * The function addRolesDetails adds new role in the database.
 	 */
 	@Override
-	public ResponseEntity<Roles> addRolesDetails(Roles roleAccess) {
-		System.out.print("hss");
+	public ResponseEntity<Roles> addRolesDetails(Roles roles) {
+		
 		System.out.println(userRolesAccess.permission("addRolesDetails"));
 		if(userRolesAccess.permission("addRolesDetails") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		daoRoles.save(roleAccess);
-		return new ResponseEntity<>(roleAccess,HttpStatus.OK);
+		daoRoles.save(roles);
+		return new ResponseEntity<>(roles,HttpStatus.OK);
 		
 	}
 
@@ -93,12 +93,12 @@ public class RolesServiceImpl implements RolesService{
 	 * The function deleteRolesDetails deletes the role from the database.
 	 */
 	@Override
-	public ResponseEntity<String> deleteRolesDetails(String role_id) {
+	public ResponseEntity<String> deleteRolesDetails(int role_id) {
 
 		if(userRolesAccess.permission("deleteRolesDetails") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
-		qry = "Delete from role_access where role_id = " + Integer.parseInt(role_id) +";"; 
+		qry = "Delete from roles where role_id = " + role_id +";"; 
 		jdbcTemplate.execute(qry);
 		return new ResponseEntity<>("User Deleted!",HttpStatus.OK);
 		

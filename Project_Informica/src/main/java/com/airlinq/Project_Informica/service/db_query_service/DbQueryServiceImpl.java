@@ -1,6 +1,9 @@
 package com.airlinq.Project_Informica.service.db_query_service;
 
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +37,7 @@ import com.airlinq.Project_Informica.utility.JwtUtility;
 public class DbQueryServiceImpl implements DbQueryService{
 
 	//Variable to store query
-	private String Qry;
+	private String qry;
 	
 	private String userRoleName;
 	
@@ -60,7 +63,6 @@ public class DbQueryServiceImpl implements DbQueryService{
 	
 	@Override
 	public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
-		
 
 		try {
 			authenticationManager.authenticate(
@@ -101,13 +103,13 @@ public class DbQueryServiceImpl implements DbQueryService{
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		Qry = "Select products.productid, Suppliers.supplierid, Suppliers.ContactName, "
+		qry = "Select products.productid, Suppliers.supplierid, Suppliers.ContactName, "
 				+ "products.product_name, products.unit_price from products, Suppliers "
 				+ "where products.supplierid = Suppliers.supplierid "
 				+ "order by products.unit_price Asc;";
 
 	
-		Object ans = jdbcTemplate.queryForList(Qry);
+		Object ans = jdbcTemplate.queryForList(qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 		
 	}
@@ -126,7 +128,7 @@ public class DbQueryServiceImpl implements DbQueryService{
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		Qry = "Select categories.categoryid ,"
+		qry = "Select categories.categoryid ,"
 				+ "	categories.CategoryName,"
 				+ " Sum(products.unit_price) as TotalPrice "
 				+ "from Categories as categories , products as products "
@@ -135,7 +137,7 @@ public class DbQueryServiceImpl implements DbQueryService{
 				+ "order by TotalPrice ASC;";
 
 	
-		Object ans = jdbcTemplate.queryForList(Qry);
+		Object ans = jdbcTemplate.queryForList(qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 		
 	}
@@ -154,7 +156,7 @@ public class DbQueryServiceImpl implements DbQueryService{
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		Qry = "Select Orders.OrderID, Customers.CustomerID, "
+		qry = "Select Orders.OrderID, Customers.CustomerID, "
 				+ "Customers.CompanyName, Customers.ContactName, "
 				+ "Orders.OrderDate, Orders.RequiredDate, "
 				+ "Orders.ShippedDate, Orders.ShipVia, "
@@ -166,7 +168,7 @@ public class DbQueryServiceImpl implements DbQueryService{
 				+ "order by Customers.CustomerID ASC;";
 
 	
-		Object ans = jdbcTemplate.queryForList(Qry);
+		Object ans = jdbcTemplate.queryForList(qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 		
 	}
@@ -185,7 +187,7 @@ public class DbQueryServiceImpl implements DbQueryService{
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		Qry = "	Select c.OrderID,\r\n"
+		qry = "	Select c.OrderID,\r\n"
 				+ "a.CompanyName,\r\n"
 				+ "a.ContactName,\r\n"
 				+ "d.product_name,\r\n"
@@ -198,7 +200,7 @@ public class DbQueryServiceImpl implements DbQueryService{
 				+ "on b.OrderID = c.OrderID inner join products as d \r\n"
 				+ "on c.productid = d.productid;";
 
-		Object ans = jdbcTemplate.queryForList(Qry);
+		Object ans = jdbcTemplate.queryForList(qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 		
 	}
@@ -217,7 +219,7 @@ public class DbQueryServiceImpl implements DbQueryService{
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		Qry ="Select Suppliers.supplierid,\r\n"
+		qry ="Select Suppliers.supplierid,\r\n"
 				+ "	Suppliers.CompanyName,\r\n"
 				+ "    Suppliers.ContactName,\r\n"
 				+ "    Group_Concat(products.product_name)\r\n"
@@ -226,7 +228,7 @@ public class DbQueryServiceImpl implements DbQueryService{
 				+ "Group By Suppliers.supplierid;";
 
 	
-		Object ans = jdbcTemplate.queryForList(Qry);
+		Object ans = jdbcTemplate.queryForList(qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
 	
@@ -244,10 +246,10 @@ public class DbQueryServiceImpl implements DbQueryService{
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		Qry = "Select Orders.OrderID, totalSum(Orders.OrderID) \r\n"
+		qry = "Select Orders.OrderID, totalSum(Orders.OrderID) \r\n"
 				+ "from Orders order by Orders.OrderID";
 		
-		Object ans = jdbcTemplate.queryForList(Qry);
+		Object ans = jdbcTemplate.queryForList(qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
 	
@@ -265,9 +267,9 @@ public class DbQueryServiceImpl implements DbQueryService{
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		 Qry = "Select * from products";
+		 qry = "Select * from products";
 		
-		Object ans = jdbcTemplate.queryForList(Qry);
+		Object ans = jdbcTemplate.queryForList(qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
 	
@@ -285,9 +287,9 @@ public class DbQueryServiceImpl implements DbQueryService{
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		Qry = "Select * from vw_customers_order";
+		qry = "Select * from vw_customers_order";
 
-		Object ans = jdbcTemplate.queryForList(Qry);
+		Object ans = jdbcTemplate.queryForList(qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
 	
@@ -305,9 +307,9 @@ public class DbQueryServiceImpl implements DbQueryService{
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		Qry = "Select * from CustomerOrder";
+		qry = "Select * from CustomerOrder";
 	
-		Object ans = jdbcTemplate.queryForList(Qry);
+		Object ans = jdbcTemplate.queryForList(qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
 	
@@ -325,9 +327,9 @@ public class DbQueryServiceImpl implements DbQueryService{
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		Qry = "Select * from CustomerDetails";
+		qry = "Select * from CustomerDetails";
 		
-		Object ans = jdbcTemplate.queryForList(Qry);
+		Object ans = jdbcTemplate.queryForList(qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
 	
@@ -345,9 +347,9 @@ public class DbQueryServiceImpl implements DbQueryService{
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		Qry = "Select * from AllOrders;" ;
+		qry = "Select * from AllOrders;" ;
 	
-		Object ans = jdbcTemplate.queryForList(Qry);
+		Object ans = jdbcTemplate.queryForList(qry);
 		return new ResponseEntity<>(ans,HttpStatus.OK);
 	}
 	

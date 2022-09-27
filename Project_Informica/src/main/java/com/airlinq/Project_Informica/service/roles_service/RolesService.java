@@ -20,10 +20,10 @@ public interface RolesService {
 
 	public ResponseEntity<List<Roles>> getAllRolesDetails();
 	
-	public ResponseEntity<Object> getRolesDetails(String user_email);
+	public ResponseEntity<Object> getRolesDetails(int role_id);
 	
-	public ResponseEntity<Roles> addRolesDetails(Roles roleAccess);
+	public ResponseEntity<Roles> addRolesDetails(Roles roles);
 	
-	public ResponseEntity<String> deleteRolesDetails(String role_id);
+	public ResponseEntity<String> deleteRolesDetails(int role_id);
 	
 }
