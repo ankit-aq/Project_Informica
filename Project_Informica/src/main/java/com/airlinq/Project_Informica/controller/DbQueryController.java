@@ -25,20 +25,7 @@ public class DbQueryController {
 	
 	@Autowired
 	private DbQueryServiceImpl dbQueryServiceImpl;
-	
-	/**
-	 * API for token creation
-	 * 
-	 * @param jwtRequest
-	 * @throws Exception
-	 */
-	@PostMapping("/authenticate")
-	public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception {
-		
-		return this.dbQueryServiceImpl.authenticate(jwtRequest);
-	}
-	
-	
+
 	
 	/**
 	 * API for 1st question of db assignment

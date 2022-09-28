@@ -1,8 +1,6 @@
 package com.airlinq.Project_Informica.service.db_query_service;
 
 
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,38 +54,6 @@ public class DbQueryServiceImpl implements DbQueryService{
 	@Autowired
 	private UserRolesAccess userRolesAccess;
 	
-	
-	/**
-	 * This authenticate function authenticate the requests and the credentials and return the token.
-	 */
-	
-	@Override
-	public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
-
-		try {
-			authenticationManager.authenticate(
-						new UsernamePasswordAuthenticationToken(
-								jwtRequest.getUsername(), 
-								jwtRequest.getPassword()
-						)
-			);
-		}
-		catch (BadCredentialsException e) {
-			throw new UnauthorizedAccessException("Invalid_CREDENTIALS");
-		}
-		
-		userRoleName = userCredentialsService.usernameRole(jwtRequest.getUsername(), jwtRequest.getRoleName());
-				
-		final UserDetails userDetails
-				= userCredentialsService.loadUserData(userRoleName);
-		
-		final String token
-				= jwtUtility.generateToken(userDetails);
-		
-		
-		return new JwtResponse(token);
-		
-	}
 	
 	/**
 	 * This function returns the data from the database after 

@@ -19,8 +19,6 @@ import com.airlinq.Project_Informica.model.JwtResponse;
 @Service
 public interface DbQueryService {
 	
-	public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception;
-	
 	public ResponseEntity<Object>supplier_products();
 	
 	public ResponseEntity<Object>category_products_price();
