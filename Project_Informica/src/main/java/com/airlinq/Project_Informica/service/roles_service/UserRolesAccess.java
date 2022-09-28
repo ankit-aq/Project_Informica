@@ -59,7 +59,6 @@ public class UserRolesAccess {
 	    		+ "where user_details.email = \"" + user_email + "\" and role_name = \"" + role_name + "\";";
 			
 	    List<Map<String, Object>> user_details = jdbcTemplate.queryForList(qry);
-	    System.out.println(user_details);
 	     
 	    if(user_details.get(0).get("role_name").toString().equals("admin")) {
 	    	return true;
