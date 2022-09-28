@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.airlinq.Project_Informica.entities.API;
 import com.airlinq.Project_Informica.entities.Roles;
-import com.airlinq.Project_Informica.service.apientity_service.APIDetailsServiceImpl;
+import com.airlinq.Project_Informica.service.api_entity_service.APIDetailsServiceImpl;
 import com.airlinq.Project_Informica.service.roles_service.RolesServiceImpl;
 
 @RestController

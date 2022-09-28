@@ -13,11 +13,28 @@ import com.airlinq.Project_Informica.entities.RolesAPIMapping;
 import com.airlinq.Project_Informica.exception.ResourceNotFoundException;
 import com.airlinq.Project_Informica.service.roles_service.UserRolesAccess;
 
+
+/**
+ * The RolesAPIMappingDetailsServiceImpl class defines all the RolesAPIMappingDetailsService interface methods.
+ * All the methods in this class will be invoked by the controller class
+ * for accepting the request and giving the response.
+ * 
+ * @author Mahi Kumawat
+ * @version 1.0
+ *
+ */
+
 @Service
 public class RolesAPIMappingDetailsServiceImpl implements RolesAPIMappingDetailsService{
 
+	/**
+	 * Variable to store the query.
+	 */
 	String qry;
 	
+	/**
+	 * list to store RolesAPIMapping data items.
+	 */
 	List<RolesAPIMapping> datalist;
 	
 	@Autowired
@@ -29,6 +46,10 @@ public class RolesAPIMappingDetailsServiceImpl implements RolesAPIMappingDetails
 	@Autowired
 	private UserRolesAccess userRolesAccess;
 	
+	
+	/**
+	 * The function getAllRolesAPIMappingDetails fetches all mapping details from the database.
+	 */
 	@Override
 	public ResponseEntity<List<RolesAPIMapping>> getAllRolesAPIMappingDetails() {
 		
@@ -41,6 +62,10 @@ public class RolesAPIMappingDetailsServiceImpl implements RolesAPIMappingDetails
 		return new ResponseEntity<>(datalist, HttpStatus.OK);
 	}
 
+	
+	/**
+	 * The function getRolesAPIMappingDetails fetches particular mapping details from the database.
+	 */
 	@Override
 	public ResponseEntity<Object> getRolesAPIMappingDetails(int roles_api_mapping_id) {
 		
@@ -60,6 +85,10 @@ public class RolesAPIMappingDetailsServiceImpl implements RolesAPIMappingDetails
 		return new ResponseEntity<>(mapping_details.get(0), HttpStatus.OK);
 	}
 
+	
+	/**
+	 * The function addRolesAPIMappingDetails adds new role_api_mapping data in the database.
+	 */
 	@Override
 	public ResponseEntity<RolesAPIMapping> addRolesAPIMappingDetails(RolesAPIMapping rolesAPIMapping) {
 		
@@ -72,6 +101,10 @@ public class RolesAPIMappingDetailsServiceImpl implements RolesAPIMappingDetails
 		
 	}
 
+	
+	/**
+	 * The function deleteRolesAPIMappingDetails deletes the role_api_mapping data from the database.
+	 */
 	@Override
 	public ResponseEntity<String> deleteRolesAPIMappingDetails(int roles_api_mapping_id) {
 		

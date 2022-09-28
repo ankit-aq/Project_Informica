@@ -1,4 +1,4 @@
-package com.airlinq.Project_Informica.service.apientity_service;
+package com.airlinq.Project_Informica.service.api_entity_service;
 
 import java.util.List;
 

@@ -3,16 +3,17 @@ package com.airlinq.Project_Informica.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name="roles_api_mapping")
 public class RolesAPIMapping {
 	
-	@javax.persistence.Id
-	@GeneratedValue
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="roles_api_mapping_id")
 	private int roles_api_mapping_id;
 	

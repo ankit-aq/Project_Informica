@@ -1,6 +1,7 @@
 package com.airlinq.Project_Informica.service.product_service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,13 +58,23 @@ public class ProductDetailsServiceImpl implements ProductDetailsService{
 	 * The function getProductDetail fetches particular product details from the database.
 	 */
 	@Override
-	public ResponseEntity<Products> getProductDetails(String product_Id) {
+	public ResponseEntity<Object> getProductDetails(int productId) {
+		
 		
 		if(userRolesAccess.permission("getProductDetails") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
-		Products productData = daoProduct.findById(Integer.parseInt(product_Id)).get();
-		return new ResponseEntity<>(productData, HttpStatus.OK);
+		
+		qry = "Select * from products where productid = " + productId+ ";";
+		
+		List<Map<String, Object>> product_details = jdbcTemplate.queryForList(qry);
+		
+		if(product_details.isEmpty() == true) {
+
+			throw new ResourceNotFoundException("User not found");
+		}
+		return new ResponseEntity<>(product_details.get(0) ,HttpStatus.OK);
+		
 	}
 
 	/**
@@ -85,14 +96,15 @@ public class ProductDetailsServiceImpl implements ProductDetailsService{
 	 * The function deleteProductDetail deletes the product from the database.
 	 */
 	@Override
-	public ResponseEntity<String> deleteProductDetails(String productId) {
+	public ResponseEntity<String> deleteProductDetails(int productId) {
 		
 		if(userRolesAccess.permission("deleteProductDetails") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
-		qry = "Delete from products where productid = " + Integer.parseInt(productId) +";"; 
+		qry = "Delete from products where productid = " + productId +";"; 
 		jdbcTemplate.execute(qry);
 		return new ResponseEntity<>("User Deleted!",HttpStatus.OK);
 	}
+
 
 }

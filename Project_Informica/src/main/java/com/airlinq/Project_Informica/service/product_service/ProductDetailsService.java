@@ -20,9 +20,10 @@ public interface ProductDetailsService {
 
 	public ResponseEntity<List<Products>> getAllProductDetails();
 	
-	public ResponseEntity<Products> getProductDetails(String product_Id);
+	public ResponseEntity<Object> getProductDetails(int product_Id);
 	
 	public ResponseEntity<Products> addProductDetails(Products productDetails);
 	
-	public ResponseEntity<String> deleteProductDetails(String productId);
+	public ResponseEntity<String> deleteProductDetails(int productId);
+	
 }

@@ -46,7 +46,7 @@ public class ProductDetailsController {
 	 */
 	
 	@GetMapping(path="/getProductDetails/{productId}")
-	public ResponseEntity<Products> getProductDetails(@PathVariable String productId) {
+	public ResponseEntity<Object> getProductDetails(@PathVariable int productId) {
 		
 		return this.productDetailsServiceImpl.getProductDetails(productId);
 	}
@@ -68,7 +68,7 @@ public class ProductDetailsController {
 	 */
 	
 	@DeleteMapping(path="/deleteProductDetails/{productId}")
-    public ResponseEntity<String> deleteProductDetails(@PathVariable String productId) {
+    public ResponseEntity<String> deleteProductDetails(@PathVariable int productId) {
 
 		return this.productDetailsServiceImpl.deleteProductDetails(productId);
     }
