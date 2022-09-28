@@ -1,4 +1,4 @@
-package com.airlinq.Project_Informica.service.roles_service;
+	package com.airlinq.Project_Informica.service.roles_service;
 
 import java.util.List;
 import java.util.Map;
@@ -79,7 +79,6 @@ public class RolesServiceImpl implements RolesService{
 	@Override
 	public ResponseEntity<Roles> addRolesDetails(Roles roles) {
 		
-		System.out.println(userRolesAccess.permission("addRolesDetails"));
 		if(userRolesAccess.permission("addRolesDetails") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}

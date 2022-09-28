@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import com.airlinq.Project_Informica.filter.JwtFilter;
 import com.airlinq.Project_Informica.service.usercredentials_service.UserCredentialsService;
 
