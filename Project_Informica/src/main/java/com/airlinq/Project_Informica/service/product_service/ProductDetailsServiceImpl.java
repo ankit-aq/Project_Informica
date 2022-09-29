@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.airlinq.Project_Informica.dao.DaoProduct;
 import com.airlinq.Project_Informica.entities.Products;
 import com.airlinq.Project_Informica.exception.ResourceNotFoundException;
-import com.airlinq.Project_Informica.service.roles_service.UserRolesAccess;
+import com.airlinq.Project_Informica.service.api_permission.ApiPermission;
 
 /**
  * The ProductDetailsServiceImpl class defines all the ProductDetailsService interface methods.
@@ -36,7 +36,7 @@ public class ProductDetailsServiceImpl implements ProductDetailsService{
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	private UserRolesAccess userRolesAccess;
+	private ApiPermission userRolesAccess;
 	
 	/**
 	 * The function getAllProductDetails fetches all products details from the database.

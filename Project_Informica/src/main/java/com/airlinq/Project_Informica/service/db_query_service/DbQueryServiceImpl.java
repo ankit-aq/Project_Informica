@@ -17,7 +17,7 @@ import com.airlinq.Project_Informica.exception.ResourceNotFoundException;
 import com.airlinq.Project_Informica.exception.UnauthorizedAccessException;
 import com.airlinq.Project_Informica.model.JwtRequest;
 import com.airlinq.Project_Informica.model.JwtResponse;
-import com.airlinq.Project_Informica.service.roles_service.UserRolesAccess;
+import com.airlinq.Project_Informica.service.api_permission.ApiPermission;
 import com.airlinq.Project_Informica.service.usercredentials_service.UserCredentialsService;
 import com.airlinq.Project_Informica.utility.JwtUtility;
 
@@ -52,7 +52,7 @@ public class DbQueryServiceImpl implements DbQueryService{
 	private UserCredentialsService userCredentialsService;
 	
 	@Autowired
-	private UserRolesAccess userRolesAccess;
+	private ApiPermission userRolesAccess;
 	
 	
 	/**

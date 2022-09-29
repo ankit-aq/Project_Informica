@@ -63,7 +63,6 @@ public class UserCredentialsService implements UserDetailsService {
 			dbusername = ans.get(0).get("email").toString();
 			dbpassword = ans.get(0).get("password").toString();
 			
-			
 			if(dbusername != null) {
 
 				return new User(dbusername, dbpassword, new ArrayList<>());
@@ -91,8 +90,8 @@ public class UserCredentialsService implements UserDetailsService {
 		roleName = usernameRoleIdDetails[1];
 		
 		
-		qry = "Select email, password, role_name from user_details inner join roles on user_details.role_id = roles.role_id "
-				+ "where email = \"" + email + "\" and role_name = \"" + roleName + "\";";
+		qry = "Select email, password, role_name from user_details inner join user_roles_mapping on user_details.user_id = user_roles_mapping.user_id "
+				+ "inner join roles on user_roles_mapping.role_id = roles.role_id where email = \"" + email + "\" and role_name = \"" + roleName + "\";";
 				
 		
 		try {

@@ -57,7 +57,7 @@ public class UserDetailsController {
 	 * 
 	 */
 	
-	@RequestMapping(value = "/addUserDetails", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/addUserDetails", method = {RequestMethod.POST })
 	public ResponseEntity<User_Details> addUserDetails(@RequestBody User_Details userdetails){
 		System.out.println("Hello");
 		return this.userDetailsServiceImpl.addUserDetails(userdetails);

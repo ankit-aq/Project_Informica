@@ -12,7 +12,7 @@ import com.airlinq.Project_Informica.dao.DaoUser;
 import com.airlinq.Project_Informica.entities.User_Details;
 import com.airlinq.Project_Informica.exception.ResourceNotFoundException;
 import com.airlinq.Project_Informica.exception.UnauthorizedAccessException;
-import com.airlinq.Project_Informica.service.roles_service.UserRolesAccess;
+import com.airlinq.Project_Informica.service.api_permission.ApiPermission;
 
 
 /**
@@ -36,7 +36,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	private UserRolesAccess userRolesAccess;
+	private ApiPermission userRolesAccess;
 	
 	/**
 	 * The function getAllUserDetails fetches all user details from the database.
@@ -89,6 +89,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 
 		qry = "Select email, password from user_details where email = \"" + userdetails.getEmail() +  "\";";
 		List<Map<String, Object>> ans = jdbcTemplate.queryForList(qry);
+		System.out.println(userdetails.getFirst_name());
 		
 		if(ans.isEmpty() == true || ans.get(0).get("password").equals(userdetails.getPassword())) {
 			

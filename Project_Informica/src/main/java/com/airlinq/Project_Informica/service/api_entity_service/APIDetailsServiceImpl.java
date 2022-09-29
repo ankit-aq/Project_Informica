@@ -14,7 +14,7 @@ import com.airlinq.Project_Informica.dao.DaoRoles;
 import com.airlinq.Project_Informica.entities.API;
 import com.airlinq.Project_Informica.entities.Roles;
 import com.airlinq.Project_Informica.exception.ResourceNotFoundException;
-import com.airlinq.Project_Informica.service.roles_service.UserRolesAccess;
+import com.airlinq.Project_Informica.service.api_permission.ApiPermission;
 	
 
 @Service
@@ -29,7 +29,7 @@ public class APIDetailsServiceImpl implements ApiDetailsService{
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	private UserRolesAccess userRolesAccess;
+	private ApiPermission userRolesAccess;
 
 	@Override
 	public ResponseEntity<List<API>> getAllAPIDetails() {

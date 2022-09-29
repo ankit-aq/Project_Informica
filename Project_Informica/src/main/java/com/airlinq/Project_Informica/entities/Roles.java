@@ -28,7 +28,6 @@ import javax.persistence.Table;
 public class Roles {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="role_id")
 	private int role_id;
 	
@@ -39,14 +38,12 @@ public class Roles {
 	private String role_description;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="role_id", referencedColumnName="role_id", foreignKey = @ForeignKey(name = "fk_role_user"))
-	private List<User_Details> user_details;
+	@JoinColumn(name="role_id", referencedColumnName = "role_id", foreignKey = @ForeignKey(name="fk_roleID_urmapping"))
+	private List<UserRolesMapping> userRolesMapping;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "roles_api_mapping", 
-	  joinColumns = {@JoinColumn(name = "role_id" , referencedColumnName="role_id", foreignKey = @ForeignKey(name = "fk_role_id"))},
-	  inverseJoinColumns = {@JoinColumn(name = "api_id", referencedColumnName="api_id", foreignKey = @ForeignKey(name = "fk_api_id"))})
-	private List<API> api;
+	@OneToMany(targetEntity = RolesAPIMapping.class, cascade = CascadeType.ALL)
+	@JoinColumn(name="role_id", referencedColumnName = "role_id", foreignKey = @ForeignKey(name="fk_roleID_ramapping"))
+	private List<RolesAPIMapping> rolesApiMapping;
 	
 	public Roles() {
 		super();

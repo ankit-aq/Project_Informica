@@ -1,11 +1,19 @@
 package com.airlinq.Project_Informica.entities;
 
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,9 +29,8 @@ import javax.persistence.Table;
 public class User_Details {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private long id;
+	@Column(name="user_id")
+	private long user_id;
 	
 	@Column(name="first_name")
 	private String first_name;
@@ -39,33 +46,40 @@ public class User_Details {
 	
 	@Column(name="password")
 	private String password;
+
 	
-	@Column(name="role_id")
-	private String role_id;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="user_id", referencedColumnName = "user_id", foreignKey = @ForeignKey(name="fk_userID_urmapping"))
+	private List<UserRolesMapping> userRolesMapping;
+	
 	
 	public User_Details() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public User_Details(long id, String first_name, String last_name, String alias, String email, String password,
-			String role_id) {
+	
+	
+	public User_Details(long user_id, String first_name, String last_name, String alias, String email, String password,
+			List<UserRolesMapping> userRolesMapping) {
 		super();
-		this.id = id;
+		this.user_id = user_id;
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.alias = alias;
 		this.email = email;
 		this.password = password;
-		this.role_id = role_id;
+		this.userRolesMapping = userRolesMapping;
 	}
 
-	public long getId() {
-		return id;
+
+
+	public long getUser_id() {
+		return user_id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setUser_id(long user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getFirst_name() {
@@ -108,12 +122,12 @@ public class User_Details {
 		this.password = password;
 	}
 
-	public String getRole_id() {
-		return role_id;
+	public List<UserRolesMapping> getUserRolesMapping() {
+		return userRolesMapping;
 	}
 
-	public void setRole_id(String role_id) {
-		this.role_id = role_id;
+	public void setUserRolesMapping(List<UserRolesMapping> userRolesMapping) {
+		this.userRolesMapping = userRolesMapping;
 	}
 
 	

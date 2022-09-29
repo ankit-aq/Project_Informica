@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.airlinq.Project_Informica.dao.DaoRoles;
 import com.airlinq.Project_Informica.entities.Roles;
 import com.airlinq.Project_Informica.exception.ResourceNotFoundException;
+import com.airlinq.Project_Informica.service.api_permission.ApiPermission;
 
 /**
  * The RolesServiceImpl class defines all the RolesService interface methods.
@@ -34,7 +35,7 @@ public class RolesServiceImpl implements RolesService{
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	private UserRolesAccess userRolesAccess;
+	private ApiPermission userRolesAccess;
 
 	
 	/**

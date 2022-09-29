@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.airlinq.Project_Informica.dao.DaoRolesAPIMapping;
 import com.airlinq.Project_Informica.entities.RolesAPIMapping;
 import com.airlinq.Project_Informica.exception.ResourceNotFoundException;
-import com.airlinq.Project_Informica.service.roles_service.UserRolesAccess;
+import com.airlinq.Project_Informica.service.api_permission.ApiPermission;
 
 
 /**
@@ -44,7 +44,7 @@ public class RolesAPIMappingDetailsServiceImpl implements RolesAPIMappingDetails
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	private UserRolesAccess userRolesAccess;
+	private ApiPermission userRolesAccess;
 	
 	
 	/**
