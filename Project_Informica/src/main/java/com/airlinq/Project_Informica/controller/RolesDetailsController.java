@@ -15,8 +15,8 @@ import com.airlinq.Project_Informica.service.roles_service.RolesServiceImpl;
 
 
 /**
- * This RolesDetailsController class is a controller class for Role_Access entity class.
- * This controller class accepts all the HTTP requests for role_access table and send the response.  
+ * This RolesDetailsController class is a controller class for Roles entity class.
+ * This controller class accepts all the HTTP requests for roles table and send the response.  
  * 
  * @author Ankit Sharma 
  * @version 1.0
@@ -31,7 +31,7 @@ public class RolesDetailsController {
 	
 	
 	/**
-	 * API for fetching all the user API access details from the database.
+	 * API for fetching all the roles details from the database.
 	 * 
 	 */
 	@GetMapping(path="/getAllRolesDetails")
@@ -41,7 +41,7 @@ public class RolesDetailsController {
 	}
 	
 	/**
-	 * API for fetching the user API access details by user_email.
+	 * API for fetching the role details by role_id.
 	 * 
 	 */
 	
@@ -51,7 +51,7 @@ public class RolesDetailsController {
 	}
 	
 	/**
-	 * API for inserting user API access details in the role_access table in the database.
+	 * API for inserting role in the roles table in the database.
 	 * 
 	 */
 	
@@ -62,7 +62,7 @@ public class RolesDetailsController {
 	
 	
 	/**
-	 * API for deleting role details in the role_access table in the database using role_id.
+	 * API for deleting role in the roles table in the database using role_id.
 	 * 
 	 */
 	@DeleteMapping(path="/deleteRolesDetails/{role_id}")

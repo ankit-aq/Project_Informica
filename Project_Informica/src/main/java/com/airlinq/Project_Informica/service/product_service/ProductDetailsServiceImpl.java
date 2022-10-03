@@ -103,7 +103,7 @@ public class ProductDetailsServiceImpl implements ProductDetailsService{
 		}
 		qry = "Delete from products where productid = " + productId +";"; 
 		jdbcTemplate.execute(qry);
-		return new ResponseEntity<>("User Deleted!",HttpStatus.OK);
+		return new ResponseEntity<>("Product Deleted!",HttpStatus.OK);
 	}
 
 

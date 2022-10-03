@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -53,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
-		auth.userDetailsService(userCredentialsService);
+		auth.userDetailsService(userCredentialsService).passwordEncoder(passwordEncoder());
 	}
 	
 	
@@ -85,4 +86,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		
 		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 	}
+	
+	/**
+	 * This function encrypts the password.
+	 * It encrypt password in BCryptPasswordEncoder.
+	 * 
+	 */
+	
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		
+		return new BCryptPasswordEncoder();
+	}
+	
 }

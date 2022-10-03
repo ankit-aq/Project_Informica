@@ -8,7 +8,7 @@ import com.airlinq.Project_Informica.entities.RolesAPIMapping;
 
 
 /**
- * This interface is created to implement Data Access Object(DAO) for api table
+ * This interface is created to implement Data Access Object(DAO) for RolesAPIMapping table
  * in the database.
  * 
  * @author Ankit Sharma

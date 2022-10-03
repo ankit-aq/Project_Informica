@@ -14,14 +14,20 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+/**
+ * This class API is an entity class used to store data
+ * in the same format present in the database API table. 
+ * Its an entity class.
+ * 
+ * @author Mahi Kumawat
+ * @version 1.0
+ */
 
 @Entity
 @Table(name="api")
 public class API {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="api_id")
 	private int api_id;
 	
@@ -31,7 +37,11 @@ public class API {
 	@Column(name="api_description")
 	private String api_description;
 	
-	@OneToMany(targetEntity = RolesAPIMapping.class, cascade = CascadeType.ALL)
+	/**
+	 * Adds one to many mapping.
+	 */
+	
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="api_id", referencedColumnName = "api_id", foreignKey = @ForeignKey(name="fk_apiID_ramapping"))
 	private List<RolesAPIMapping> rolesApiMapping;
 

@@ -100,7 +100,7 @@ public class RolesServiceImpl implements RolesService{
 		}
 		qry = "Delete from roles where role_id = " + role_id +";"; 
 		jdbcTemplate.execute(qry);
-		return new ResponseEntity<>("User Deleted!",HttpStatus.OK);
+		return new ResponseEntity<>("Role Deleted!",HttpStatus.OK);
 		
 	}
 

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.airlinq.Project_Informica.dao.DaoUser;
 import com.airlinq.Project_Informica.entities.User_Details;
@@ -31,6 +33,9 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	@Autowired
 	private DaoUser daouser;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -82,23 +87,22 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	@Override
 	public ResponseEntity<User_Details> addUserDetails(User_Details userdetails) {
 		
-		if(userRolesAccess.permission("addUserDetails") != true) {
-			throw new ResourceNotFoundException("You do not have permission for this API");
+		List<Map<String, Object>> ans;
+		
+		qry = "Select email, password, role_name from user_details inner join user_roles_mapping on user_details.user_id = user_roles_mapping.user_id "
+				+ "inner join roles on user_roles_mapping.role_id = roles.role_id "
+				+ "where role_name = \"admin\";";
+		ans = jdbcTemplate.queryForList(qry);
+		if(ans.isEmpty() != true) {
+			if(userRolesAccess.permission("addUserDetails") != true) {
+				throw new ResourceNotFoundException("You do not have permission for this API");
+			}
 		}
 		
-
-		qry = "Select email, password from user_details where email = \"" + userdetails.getEmail() +  "\";";
-		List<Map<String, Object>> ans = jdbcTemplate.queryForList(qry);
-		System.out.println(userdetails.getFirst_name());
+		userdetails.setPassword(this.bCryptPasswordEncoder.encode(userdetails.getPassword()));
+		daouser.save(userdetails);
+		return new ResponseEntity<>(userdetails,HttpStatus.OK);
 		
-		if(ans.isEmpty() == true || ans.get(0).get("password").equals(userdetails.getPassword())) {
-			
-			daouser.save(userdetails);
-			return new ResponseEntity<>(userdetails,HttpStatus.OK);
-		}
-		else {
-			throw new UnauthorizedAccessException("Invalid_Password");
-		}
 		
 		
 	}

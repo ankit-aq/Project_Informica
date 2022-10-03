@@ -16,6 +16,15 @@ import com.airlinq.Project_Informica.entities.Roles;
 import com.airlinq.Project_Informica.service.api_entity_service.APIDetailsServiceImpl;
 import com.airlinq.Project_Informica.service.roles_service.RolesServiceImpl;
 
+/**
+ * This APIDetailsController class is a controller class for API entity class.
+ * This controller class accepts all the HTTP requests for API table and send the response.  
+ * 
+ * @author Ankit Sharma 
+ * @version 1.0
+ *
+ */
+
 @RestController
 public class APIDetailsController {
 
@@ -35,7 +44,7 @@ public class APIDetailsController {
 	}
 	
 	/**
-	 * API for fetching the user API access details by user_email.
+	 * API for fetching the user API access details by api_id.
 	 * 
 	 */
 	
@@ -45,7 +54,7 @@ public class APIDetailsController {
 	}
 	
 	/**
-	 * API for inserting user API access details in the role_access table in the database.
+	 * API for inserting user API access details in the API table in the database.
 	 * 
 	 */
 	
@@ -56,7 +65,7 @@ public class APIDetailsController {
 	
 	
 	/**
-	 * API for deleting role details in the role_access table in the database using role_id.
+	 * API for deleting API details in the API table in the database using api_id.
 	 * 
 	 */
 	@DeleteMapping(path="/deleteAPIDetails/{role_id}")

@@ -18,6 +18,16 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 
+
+/**
+ * This class adds swagger configuration in the project.
+ * The class creates Swagger UI.
+ * 
+ * @author Adarsh Lumar Jha
+ * @version 1.0
+ *
+ */
+
 @Configuration
 public class SwaggerConfig {
 	
@@ -69,8 +79,8 @@ public class SwaggerConfig {
 	private ApiInfo getInfo() {
 		
 		
-		return new ApiInfo("Project Informica", "Developed by Team Trainees", "1.0", "Terms of Service",
-				new Contact("Team Trainees", "https://ankit.com","teamtrainees@gmail.com"), "License of APIS", "API License URL",
+		return new ApiInfo("Project Informica", "Developed by Team Trainees", "1.0", "https://trainees.com",
+				new Contact("Team Trainees", "https://teamtrainees.com","teamtrainees@gmail.com"), "License of APIS", "https://teamtnees.com",
 				Collections.emptyList());
 	}
 

@@ -7,6 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * This class UserRolesMapping is an entity class used to store data
+ * in the same format present in the database UserRolesMapping table. 
+ * Its an entity class.
+ * 
+ * @author Adarsh Kumar Jha
+ * @version 1.0
+ */
+
 @Entity
 @Table(name="user_roles_mapping")
 public class UserRolesMapping {

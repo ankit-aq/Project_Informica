@@ -16,6 +16,15 @@ import com.airlinq.Project_Informica.entities.Roles;
 import com.airlinq.Project_Informica.exception.ResourceNotFoundException;
 import com.airlinq.Project_Informica.service.api_permission.ApiPermission;
 	
+/**
+ * The APIDetailsServiceImpl class defines all the APIDetailsService interface methods.
+ * All the methods in this class will be invoked by the APIDetailsController class
+ * for accepting the request and giving the response.
+ * 
+ * @author Mahi Kumawat
+ * @version 1.0
+ *
+ */
 
 @Service
 public class APIDetailsServiceImpl implements ApiDetailsService{
@@ -30,6 +39,11 @@ public class APIDetailsServiceImpl implements ApiDetailsService{
 	
 	@Autowired
 	private ApiPermission userRolesAccess;
+	
+	/**
+	 * API for fetching all the user API access details from the database.
+	 * 
+	 */
 
 	@Override
 	public ResponseEntity<List<API>> getAllAPIDetails() {
@@ -42,6 +56,10 @@ public class APIDetailsServiceImpl implements ApiDetailsService{
 		return new ResponseEntity<>(datalist, HttpStatus.OK);
 	}
 
+	/**
+	 * API for fetching the user API access details by api_id.
+	 * 
+	 */
 	@Override
 	public ResponseEntity<Object> getAPIDetails(int api_id) {
 		
@@ -61,6 +79,12 @@ public class APIDetailsServiceImpl implements ApiDetailsService{
 
 	}
 
+	
+	/**
+	 * API for inserting user API access details in the API table in the database.
+	 * 
+	 */
+	
 	@Override
 	public ResponseEntity<API> addAPIDetails(API apis) {
 		
@@ -72,6 +96,10 @@ public class APIDetailsServiceImpl implements ApiDetailsService{
 		return new ResponseEntity<>(apis,HttpStatus.OK);
 	}
 
+	/**
+	 * API for deleting API details in the API table in the database using api_id.
+	 * 
+	 */
 	@Override
 	public ResponseEntity<String> deleteAPIDetails(int api_id) {
 		

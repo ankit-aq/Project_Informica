@@ -41,9 +41,10 @@ public class Roles {
 	@JoinColumn(name="role_id", referencedColumnName = "role_id", foreignKey = @ForeignKey(name="fk_roleID_urmapping"))
 	private List<UserRolesMapping> userRolesMapping;
 	
-	@OneToMany(targetEntity = RolesAPIMapping.class, cascade = CascadeType.ALL)
+
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="role_id", referencedColumnName = "role_id", foreignKey = @ForeignKey(name="fk_roleID_ramapping"))
-	private List<RolesAPIMapping> rolesApiMapping;
+	private List<RolesAPIMapping> RolesApiMapping;
 	
 	public Roles() {
 		super();

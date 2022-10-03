@@ -13,6 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.airlinq.Project_Informica.entities.RolesAPIMapping;
 import com.airlinq.Project_Informica.service.roles_api_mapping.RolesAPIMappingDetailsServiceImpl;
 
+/**
+ * This RolesAPIMappingDetailsController class is a controller class for RolesAPIMapping entity class.
+ * This controller class accepts all the HTTP requests for RolesAPIMapping table and send the response.  
+ * 
+ * @author Ankit Sharma
+ * @version 1.0
+ *
+ */
+
 @RestController
 public class RolesAPIMappingDetailsController {
 
@@ -20,7 +29,7 @@ public class RolesAPIMappingDetailsController {
 	private RolesAPIMappingDetailsServiceImpl rolesAPIMappingDetailsServiceImpl;
 	
 	/**
-	 * API for fetching all the user API access details from the database.
+	 * API for fetching all the roles API access details from the database.
 	 * 
 	 */
 	@GetMapping(path="/getAllRolesAPIMappingDetails")
@@ -30,7 +39,7 @@ public class RolesAPIMappingDetailsController {
 	}
 	
 	/**
-	 * API for fetching the user API access details by user_email.
+	 * API for fetching the roles API access details by roles_api_mapping_id.
 	 * 
 	 */
 	
@@ -41,7 +50,7 @@ public class RolesAPIMappingDetailsController {
 	}
 	
 	/**
-	 * API for inserting user API access details in the role_access table in the database.
+	 * API for inserting roles api mapping details in the RolesAPIMapping table in the database.
 	 * 
 	 */
 	
@@ -53,7 +62,7 @@ public class RolesAPIMappingDetailsController {
 	
 	
 	/**
-	 * API for deleting role details in the role_access table in the database using role_id.
+	 * API for deleting roles api mapping details in the RolesAPIMapping table in the database using roles_api_mapping_id..
 	 * 
 	 */
 	@DeleteMapping(path="/deleteRolesAPIMappingDetails/{roles_api_mapping_id}")

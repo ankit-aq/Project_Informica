@@ -43,7 +43,7 @@ public class UserDetailsController {
 	}
 	
 	/**
-	 * API for fetching the user details by user_email.
+	 * API for fetching the user details by user_id.
 	 * 
 	 */
 	
@@ -64,7 +64,7 @@ public class UserDetailsController {
 	}
 	
 	/**
-	 * API for deleting user details in the user_details table in the database using user_email.
+	 * API for deleting user details in the user_details table in the database using user_id.
 	 * 
 	 */
 	

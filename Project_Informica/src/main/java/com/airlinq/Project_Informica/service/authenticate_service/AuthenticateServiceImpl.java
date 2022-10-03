@@ -5,6 +5,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.airlinq.Project_Informica.exception.UnauthorizedAccessException;
@@ -20,6 +21,9 @@ public class AuthenticateServiceImpl implements AuthenticateService{
 		
 	@Autowired
 	private JwtUtility jwtUtility;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 		
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -33,13 +37,17 @@ public class AuthenticateServiceImpl implements AuthenticateService{
 	@Override
 	public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
 
+		System.out.println(this.bCryptPasswordEncoder.encode(jwtRequest.getPassword()));	
+		
 		try {
+
 			authenticationManager.authenticate(
 						new UsernamePasswordAuthenticationToken(
 								jwtRequest.getUsername(), 
 								jwtRequest.getPassword()
 						)
 			);
+			
 		}
 		catch (BadCredentialsException e) {
 			throw new UnauthorizedAccessException("Invalid_CREDENTIALS");

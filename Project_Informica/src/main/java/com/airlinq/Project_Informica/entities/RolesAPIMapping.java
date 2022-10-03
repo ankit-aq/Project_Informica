@@ -8,6 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * This class RolesAPIMapping is an entity class used to store data
+ * in the same format present in the database RolesAPIMapping table. 
+ * Its an entity class.
+ * 
+ * @author Mahi Kumawat
+ * @version 1.0
+ */
 
 @Entity
 @Table(name="roles_api_mapping")

@@ -53,16 +53,16 @@ public class UserCredentialsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UnauthorizedAccessException {
 		
 
-		
+
 		qry = "Select email, password from user_details where email = \"" + username + "\";";
 		
 		try {
-			
+
 			List<Map<String, Object>> ans = jdbcTemplate.queryForList(qry);
 			
 			dbusername = ans.get(0).get("email").toString();
 			dbpassword = ans.get(0).get("password").toString();
-			
+
 			if(dbusername != null) {
 
 				return new User(dbusername, dbpassword, new ArrayList<>());

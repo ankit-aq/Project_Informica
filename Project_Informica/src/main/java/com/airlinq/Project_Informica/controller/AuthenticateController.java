@@ -9,6 +9,15 @@ import com.airlinq.Project_Informica.model.JwtRequest;
 import com.airlinq.Project_Informica.model.JwtResponse;
 import com.airlinq.Project_Informica.service.authenticate_service.AuthenticateServiceImpl;
 
+/**
+ * This AuthenticateController class is a controller class to accept authorization requests.
+ * This controller class accepts all the HTTP requests for authentication and returns token.
+ * 
+ * @author Mahi Kumawat 
+ * @version 1.0
+ *
+ */
+
 @RestController
 public class AuthenticateController {
 

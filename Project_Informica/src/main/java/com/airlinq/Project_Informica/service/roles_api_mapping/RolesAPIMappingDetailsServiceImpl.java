@@ -114,7 +114,7 @@ public class RolesAPIMappingDetailsServiceImpl implements RolesAPIMappingDetails
 		}
 		qry = "Delete from roles_api_mapping where roles_api_mapping_id = " + roles_api_mapping_id +";"; 
 		jdbcTemplate.execute(qry);
-		return new ResponseEntity<>("User Deleted!",HttpStatus.OK);
+		return new ResponseEntity<>("Data Deleted!",HttpStatus.OK);
 	}
 
 }
