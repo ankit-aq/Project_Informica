@@ -16,6 +16,11 @@ import com.airlinq.Project_Informica.entities.Roles;
 import com.airlinq.Project_Informica.service.api_entity_service.APIDetailsServiceImpl;
 import com.airlinq.Project_Informica.service.roles_service.RolesServiceImpl;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 /**
  * This APIDetailsController class is a controller class for API entity class.
  * This controller class accepts all the HTTP requests for API table and send the response.  
@@ -26,6 +31,7 @@ import com.airlinq.Project_Informica.service.roles_service.RolesServiceImpl;
  */
 
 @RestController
+@Api(value = "API Controller")
 public class APIDetailsController {
 
 	
@@ -38,6 +44,10 @@ public class APIDetailsController {
 	 * 
 	 */
 	@GetMapping(path="/getAllAPIDetails")
+	@ApiOperation(value = "Get all APIs from the database")
+	@ApiResponses(value = {
+		@ApiResponse(code = 200, message = "Successfully retrieved")	
+	})
 	public ResponseEntity<List<API>> getAllAPIDetails(){
 		
 		return this.apiDetailsServiceImpl.getAllAPIDetails();
@@ -49,6 +59,10 @@ public class APIDetailsController {
 	 */
 	
 	@GetMapping(path="/getAPIDetails/{api_id}")
+	@ApiOperation(value = "Get API fby Id")
+	@ApiResponses(value = {
+		@ApiResponse(code = 200, message = "Successfully retrieved")	
+	})
 	public ResponseEntity<Object> getAPIDetails(@PathVariable int api_id){
 		return this.apiDetailsServiceImpl.getAPIDetails(api_id);
 	}
@@ -59,6 +73,10 @@ public class APIDetailsController {
 	 */
 	
 	@PostMapping(path="/addAPIDetails")
+	@ApiOperation(value = "Add API in the API Table")
+	@ApiResponses(value = {
+		@ApiResponse(code = 200, message = "Successfully added")	
+	})
 	public ResponseEntity<API> addAPIDetails(@RequestBody API apis){
 		return this.apiDetailsServiceImpl.addAPIDetails(apis);
 	}
@@ -69,6 +87,10 @@ public class APIDetailsController {
 	 * 
 	 */
 	@DeleteMapping(path="/deleteAPIDetails/{role_id}")
+	@ApiOperation(value = "Delete Api from the database")
+	@ApiResponses(value = {
+		@ApiResponse(code = 200, message = "Successfully deleted")	
+	})
     public ResponseEntity<String> deleteAPIDetails(@PathVariable int role_id) {
 
 		return this.apiDetailsServiceImpl.deleteAPIDetails(role_id);

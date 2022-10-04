@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.airlinq.Project_Informica.entities.API;
 
 /**
- * This UserDetailsService interface declares all the required function needed in APIDetailsServiceImpl class.
+ * This ApiDetailsService interface declares all the required function needed in APIDetailsServiceImpl class.
  * 
  * @author Mahi Kumawat
  * @version 1.0

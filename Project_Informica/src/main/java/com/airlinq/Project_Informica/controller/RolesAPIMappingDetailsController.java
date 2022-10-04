@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.airlinq.Project_Informica.entities.RolesAPIMapping;
 import com.airlinq.Project_Informica.service.roles_api_mapping.RolesAPIMappingDetailsServiceImpl;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 /**
  * This RolesAPIMappingDetailsController class is a controller class for RolesAPIMapping entity class.
  * This controller class accepts all the HTTP requests for RolesAPIMapping table and send the response.  
@@ -33,6 +37,10 @@ public class RolesAPIMappingDetailsController {
 	 * 
 	 */
 	@GetMapping(path="/getAllRolesAPIMappingDetails")
+	@ApiOperation(value = "Fetch all roles api mapping details")
+	@ApiResponses(value = {
+		@ApiResponse(code = 200, message = "Successfully retrieved")	
+	})
 	public ResponseEntity<List<RolesAPIMapping>> getAllRolesAPIMappingDetails(){
 		
 		return this.rolesAPIMappingDetailsServiceImpl.getAllRolesAPIMappingDetails();
@@ -44,6 +52,10 @@ public class RolesAPIMappingDetailsController {
 	 */
 	
 	@GetMapping(path="/getRolesAPIMappingDetails/{roles_api_mapping_id}")
+	@ApiOperation(value = "Fetch roles api mapping details by id")
+	@ApiResponses(value = {
+		@ApiResponse(code = 200, message = "Successfully retrieved")	
+	})
 	public ResponseEntity<Object> getRolesAPIMappingDetails(@PathVariable int roles_api_mapping_id){
 		
 		return this.rolesAPIMappingDetailsServiceImpl.getRolesAPIMappingDetails(roles_api_mapping_id);
@@ -55,6 +67,10 @@ public class RolesAPIMappingDetailsController {
 	 */
 	
 	@PostMapping(path="/addRolesAPIMappingDetails")
+	@ApiOperation(value = "Add roles api mapping details in the database")
+	@ApiResponses(value = {
+		@ApiResponse(code = 200, message = "Successfully added")	
+	})
 	public ResponseEntity<RolesAPIMapping> addRolesAPIMappingDetails(@RequestBody RolesAPIMapping rolesAPIMapping){
 		
 		return this.rolesAPIMappingDetailsServiceImpl.addRolesAPIMappingDetails(rolesAPIMapping);
@@ -66,6 +82,10 @@ public class RolesAPIMappingDetailsController {
 	 * 
 	 */
 	@DeleteMapping(path="/deleteRolesAPIMappingDetails/{roles_api_mapping_id}")
+	@ApiOperation(value = "Delete roles api mapping data by id")
+	@ApiResponses(value = {
+		@ApiResponse(code = 200, message = "Successfully deleted")	
+	})
     public ResponseEntity<String> deleteRolesAPIMappingDetails(@PathVariable int roles_api_mapping_id) {
 
 		return this.rolesAPIMappingDetailsServiceImpl.deleteRolesAPIMappingDetails(roles_api_mapping_id);

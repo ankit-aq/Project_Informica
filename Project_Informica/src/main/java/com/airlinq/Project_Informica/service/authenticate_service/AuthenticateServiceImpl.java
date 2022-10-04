@@ -38,6 +38,7 @@ public class AuthenticateServiceImpl implements AuthenticateService{
 	public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
 
 		System.out.println(this.bCryptPasswordEncoder.encode(jwtRequest.getPassword()));	
+		System.out.println(this.bCryptPasswordEncoder.matches(jwtRequest.getPassword(), "$2a$10$7fe80MnrKPRWQ1.QoktrE.L3f8k0mAqxfvoLW1vpQRKI/h56aPZxq"));
 		
 		try {
 

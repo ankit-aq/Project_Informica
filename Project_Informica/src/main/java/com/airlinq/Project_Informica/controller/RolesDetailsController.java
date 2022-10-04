@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.airlinq.Project_Informica.entities.Roles;
 import com.airlinq.Project_Informica.service.roles_service.RolesServiceImpl;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 
 /**
  * This RolesDetailsController class is a controller class for Roles entity class.
@@ -35,6 +39,10 @@ public class RolesDetailsController {
 	 * 
 	 */
 	@GetMapping(path="/getAllRolesDetails")
+	@ApiOperation(value = "Fetch all roles details")
+	@ApiResponses(value = {
+		@ApiResponse(code = 200, message = "Successfully retrieved")	
+	})
 	public ResponseEntity<List<Roles>> getAllRolesDetails(){
 		
 		return this.rolesServiceImpl.getAllRolesDetails();
@@ -46,6 +54,10 @@ public class RolesDetailsController {
 	 */
 	
 	@GetMapping(path="/getRolesDetails/{role_id}")
+	@ApiOperation(value = "Fetch roles details by id")
+	@ApiResponses(value = {
+		@ApiResponse(code = 200, message = "Successfully retrieved")	
+	})
 	public ResponseEntity<Object> getRolesDetail(@PathVariable int role_id){
 		return this.rolesServiceImpl.getRolesDetails(role_id);
 	}
@@ -56,6 +68,10 @@ public class RolesDetailsController {
 	 */
 	
 	@PostMapping(path="/addRolesDetails")
+	@ApiOperation(value = "Add role in the roles table")
+	@ApiResponses(value = {
+		@ApiResponse(code = 200, message = "Successfully added")	
+	})
 	public ResponseEntity<Roles> addRolesDetails(@RequestBody Roles roles){
 		return this.rolesServiceImpl.addRolesDetails(roles);
 	}
@@ -66,6 +82,10 @@ public class RolesDetailsController {
 	 * 
 	 */
 	@DeleteMapping(path="/deleteRolesDetails/{role_id}")
+	@ApiOperation(value = "Delete role by id")
+	@ApiResponses(value = {
+		@ApiResponse(code = 200, message = "Successfully deleted")	
+	})
     public ResponseEntity<String> deleteRolesDetails(@PathVariable int role_id) {
 
 		return this.rolesServiceImpl.deleteRolesDetails(role_id);
