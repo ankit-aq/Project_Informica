@@ -15,6 +15,7 @@ import com.airlinq.Project_Informica.entities.Products;
 import com.airlinq.Project_Informica.service.product_service.ProductDetailsServiceImpl;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -59,7 +60,7 @@ public class ProductDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully retrieved")	
 	})
-	public ResponseEntity<Object> getProductDetails(@PathVariable int productId) {
+	public ResponseEntity<Object> getProductDetails(@PathVariable @ApiParam(name = "productId", value = "Product id", example = "1") int productId) {
 		
 		return this.productDetailsServiceImpl.getProductDetails(productId);
 	}
@@ -74,7 +75,7 @@ public class ProductDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully added")	
 	})
-	public ResponseEntity<Products> addProductDetails(@RequestBody Products productDetail) {
+	public ResponseEntity<Products> addProductDetails(@RequestBody @ApiParam(name = "Request Body", value = "Request Params") Products productDetail) {
 		
 		return this.productDetailsServiceImpl.addProductDetails(productDetail);
 	}
@@ -89,7 +90,7 @@ public class ProductDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully deleted")	
 	})
-    public ResponseEntity<String> deleteProductDetails(@PathVariable int productId) {
+    public ResponseEntity<String> deleteProductDetails(@PathVariable @ApiParam(name = "productId", value = "Product id", example = "1") int productId) {
 
 		return this.productDetailsServiceImpl.deleteProductDetails(productId);
     }

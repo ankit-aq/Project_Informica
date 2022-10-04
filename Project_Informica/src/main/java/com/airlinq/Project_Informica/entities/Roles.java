@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * This class Role_access is an entity class used to store data
  * in the same format present in the database role_access table. 
@@ -29,12 +31,15 @@ public class Roles {
 	
 	@Id
 	@Column(name="role_id")
+	@ApiModelProperty(notes = "Role ID", example = "1", required = true) 
 	private int role_id;
 	
 	@Column(name="role_name")
+	@ApiModelProperty(notes = "Role Name", example = "admin", required = true) 
 	private String role_name;
 	
 	@Column(name="role_description")
+	@ApiModelProperty(notes = "Role Description", example = "Access to all the apis", required = true) 
 	private String role_description;
 	
 	@OneToMany(cascade = CascadeType.ALL)

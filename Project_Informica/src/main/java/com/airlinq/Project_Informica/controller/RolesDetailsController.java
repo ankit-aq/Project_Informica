@@ -14,6 +14,7 @@ import com.airlinq.Project_Informica.entities.Roles;
 import com.airlinq.Project_Informica.service.roles_service.RolesServiceImpl;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -58,7 +59,7 @@ public class RolesDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully retrieved")	
 	})
-	public ResponseEntity<Object> getRolesDetail(@PathVariable int role_id){
+	public ResponseEntity<Object> getRolesDetail(@PathVariable @ApiParam(name = "role_id", value = "Role id", example = "1") int role_id){
 		return this.rolesServiceImpl.getRolesDetails(role_id);
 	}
 	
@@ -72,7 +73,7 @@ public class RolesDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully added")	
 	})
-	public ResponseEntity<Roles> addRolesDetails(@RequestBody Roles roles){
+	public ResponseEntity<Roles> addRolesDetails(@RequestBody @ApiParam(name = "Request Body", value = "Request Params") Roles roles){
 		return this.rolesServiceImpl.addRolesDetails(roles);
 	}
 	
@@ -86,7 +87,7 @@ public class RolesDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully deleted")	
 	})
-    public ResponseEntity<String> deleteRolesDetails(@PathVariable int role_id) {
+    public ResponseEntity<String> deleteRolesDetails(@PathVariable @ApiParam(name = "role_id", value = "Role id", example = "1") int role_id) {
 
 		return this.rolesServiceImpl.deleteRolesDetails(role_id);
     }

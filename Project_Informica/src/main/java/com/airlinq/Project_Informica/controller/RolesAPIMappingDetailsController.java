@@ -14,6 +14,7 @@ import com.airlinq.Project_Informica.entities.RolesAPIMapping;
 import com.airlinq.Project_Informica.service.roles_api_mapping.RolesAPIMappingDetailsServiceImpl;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -56,7 +57,7 @@ public class RolesAPIMappingDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully retrieved")	
 	})
-	public ResponseEntity<Object> getRolesAPIMappingDetails(@PathVariable int roles_api_mapping_id){
+	public ResponseEntity<Object> getRolesAPIMappingDetails(@PathVariable @ApiParam(name = "roles_api_mapping_id", value = "Roles_API_Mapping id", example = "1") int roles_api_mapping_id){
 		
 		return this.rolesAPIMappingDetailsServiceImpl.getRolesAPIMappingDetails(roles_api_mapping_id);
 	}
@@ -71,7 +72,7 @@ public class RolesAPIMappingDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully added")	
 	})
-	public ResponseEntity<RolesAPIMapping> addRolesAPIMappingDetails(@RequestBody RolesAPIMapping rolesAPIMapping){
+	public ResponseEntity<RolesAPIMapping> addRolesAPIMappingDetails(@RequestBody  @ApiParam(name = "Request Body", value = "Request Params") RolesAPIMapping rolesAPIMapping){
 		
 		return this.rolesAPIMappingDetailsServiceImpl.addRolesAPIMappingDetails(rolesAPIMapping);
 	}
@@ -86,7 +87,7 @@ public class RolesAPIMappingDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully deleted")	
 	})
-    public ResponseEntity<String> deleteRolesAPIMappingDetails(@PathVariable int roles_api_mapping_id) {
+    public ResponseEntity<String> deleteRolesAPIMappingDetails(@PathVariable @ApiParam(name = "roles_api_mapping_id", value = "Roles_API_Mapping id", example = "1") int roles_api_mapping_id) {
 
 		return this.rolesAPIMappingDetailsServiceImpl.deleteRolesAPIMappingDetails(roles_api_mapping_id);
     }

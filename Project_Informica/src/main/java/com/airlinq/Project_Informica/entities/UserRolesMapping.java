@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * This class UserRolesMapping is an entity class used to store data
  * in the same format present in the database UserRolesMapping table. 
@@ -22,12 +24,15 @@ public class UserRolesMapping {
 
 	@Id
 	@Column(name="user_roles_mapping_id")
+	@ApiModelProperty(notes = "User_Roles_Mapping Id", example = "1", required = true) 
 	private int user_roles_mapping_id;
 	
 	@Column(name="user_id")
+	@ApiModelProperty(notes = "User Id", example = "2", required = true) 
 	private int user_id;
 	
 	@Column(name="role_id")
+	@ApiModelProperty(notes = "Role Id", example = "3", required = true) 
 	private int role_id;
 
 	

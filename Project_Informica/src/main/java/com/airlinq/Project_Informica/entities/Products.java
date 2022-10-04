@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * This class Products is an entity class used to store data
  * in the same format present in the database products table. 
@@ -20,35 +22,45 @@ import javax.persistence.Table;
 public class Products {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name="ProductID")
+	@ApiModelProperty(notes = "Product ID", example = "1", required = true) 
 	private Integer productId;
 	
 	@Column(name="ProductName")
+	@ApiModelProperty(notes = "ProductName", example = "Chai", required = true) 
 	private String productName;
 	
 	@Column(name="SupplierID")
+	@ApiModelProperty(notes = "SupplierID", example = "1", required = true) 
 	private Integer supplierId;
 	
 	@Column(name="CategoryID")
+	@ApiModelProperty(notes = "CategoryID", example = "1", required = true) 
 	private Integer categoryId;
 	
 	@Column(name="QuantityPerUnit")
+	@ApiModelProperty(notes = "Quantity Per Unit", example = "24 - 12 oz bottles", required = true) 
 	private String quantityPerUnit;
 	
 	@Column(name="UnitPrice")
+	@ApiModelProperty(notes = "Unit Price", example = "10", required = true) 
 	private double unitPrice;
 	
 	@Column(name="UnitsInStock")
+	@ApiModelProperty(notes = "Units In Stock", example = "10", required = true) 
 	private short unitsInStock;
 	
 	@Column(name="UnitsOnOrder")
+	@ApiModelProperty(notes = "Units On Order", example = "17", required = true) 
 	private short unitsOnOrder;
 	
 	@Column(name="ReorderLevel")
+	@ApiModelProperty(notes = "ReorderLevel", example = "7", required = true) 
 	private short reorderLevel;
 	
 	@Column(name="Discontinued")
+	@ApiModelProperty(notes = "Discontinued", example = "0", required = true) 
 	private boolean discontinued;
 	
 	public Products() {

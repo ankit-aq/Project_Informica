@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * This class RolesAPIMapping is an entity class used to store data
  * in the same format present in the database RolesAPIMapping table. 
@@ -22,14 +24,17 @@ import javax.persistence.Table;
 public class RolesAPIMapping {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name="roles_api_mapping_id")
+	@ApiModelProperty(notes = "Roles_API_Mapping Id", example = "1", required = true) 
 	private int roles_api_mapping_id;
 	
 	@Column(name="role_id")
+	@ApiModelProperty(notes = "Role Id", example = "2", required = true) 
 	private int role_id;
 	
 	@Column(name="api_id")
+	@ApiModelProperty(notes = "API Id", example = "1", required = true) 
 	private int api_id;
 
 	public RolesAPIMapping() {

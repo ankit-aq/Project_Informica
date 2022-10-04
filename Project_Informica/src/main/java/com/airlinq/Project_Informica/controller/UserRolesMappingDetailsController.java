@@ -14,6 +14,7 @@ import com.airlinq.Project_Informica.entities.UserRolesMapping;
 import com.airlinq.Project_Informica.service.user_roles_mapping_service.UserRolesMappingServiceImpl;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -56,7 +57,7 @@ public class UserRolesMappingDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully retrieved")	
 	})
-	public ResponseEntity<Object> getUserRolesMappingDetails(@PathVariable int user_roles_mapping_id){
+	public ResponseEntity<Object> getUserRolesMappingDetails(@PathVariable @ApiParam(name = "user_roles_mapping_id", value = "User_Roles_Mapping id", example = "1") int user_roles_mapping_id){
 		
 		return this.userRolesMappingServiceImpl.getUserRolesMappingDetails(user_roles_mapping_id);
 	}
@@ -71,7 +72,7 @@ public class UserRolesMappingDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully added")	
 	})
-	public ResponseEntity<UserRolesMapping> addUserRolesMappingDetails(@RequestBody UserRolesMapping userRolesMapping){
+	public ResponseEntity<UserRolesMapping> addUserRolesMappingDetails(@RequestBody @ApiParam(name = "Request Body", value = "Request Params") UserRolesMapping userRolesMapping){
 		
 		return this.userRolesMappingServiceImpl.addUserRolesMappingDetails(userRolesMapping);
 	}
@@ -86,7 +87,7 @@ public class UserRolesMappingDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully deleted")	
 	})
-    public ResponseEntity<String> deleteUserRolesMappingDetails(@PathVariable int user_roles_mapping_id) {
+    public ResponseEntity<String> deleteUserRolesMappingDetails(@PathVariable @ApiParam(name = "user_roles_mapping_id", value = "User_Roles_Mapping id", example = "1") int user_roles_mapping_id) {
 
 		return this.userRolesMappingServiceImpl.deleteUserRolesMappingDetails(user_roles_mapping_id);
     }

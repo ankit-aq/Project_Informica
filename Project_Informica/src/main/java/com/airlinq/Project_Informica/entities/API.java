@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * This class API is an entity class used to store data
  * in the same format present in the database API table. 
@@ -28,14 +30,22 @@ import javax.persistence.Table;
 public class API {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name="api_id")
+	@ApiModelProperty(notes = "API ID", example = "1", required = true) 
 	private int api_id;
 	
 	@Column(name="api_name")
+	@ApiModelProperty(notes = "API Name", example = "getAllRolesDetails", required = true) 
 	private String api_name;
 	
 	@Column(name="api_description")
+	@ApiModelProperty(notes = "API Description", example = "Fetches all roles details", required = true) 
 	private String api_description;
+	
+	@Column(name="swagger_link")
+	@ApiModelProperty(notes = "Swagger Link", example = "http://localhost:9192/swagger-ui/index.html#/roles-details-controller/getAllRolesDetailsUsingGET", required = true) 
+	private String swagger_link;
 	
 	/**
 	 * Adds one to many mapping.
@@ -50,11 +60,22 @@ public class API {
 		// TODO Auto-generated constructor stub
 	}
 
-	public API(int api_id, String api_name, String api_description) {
+	public API(int api_id, String api_name, String api_description, String swagger_link) {
 		super();
 		this.api_id = api_id;
 		this.api_name = api_name;
 		this.api_description = api_description;
+		this.swagger_link = swagger_link;
+	}
+
+	
+	
+	public String getSwagger_link() {
+		return swagger_link;
+	}
+
+	public void setSwagger_link(String swagger_link) {
+		this.swagger_link = swagger_link;
 	}
 
 	public int getApi_id() {

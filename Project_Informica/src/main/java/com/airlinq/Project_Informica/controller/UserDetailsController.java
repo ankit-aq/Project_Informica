@@ -16,6 +16,7 @@ import com.airlinq.Project_Informica.entities.User_Details;
 import com.airlinq.Project_Informica.service.user_service.UserDetailsServiceImpl;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -61,7 +62,7 @@ public class UserDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully retrieved")	
 	})
-	public ResponseEntity<Object> getUserDetails(@PathVariable int user_id){
+	public ResponseEntity<Object> getUserDetails(@PathVariable @ApiParam(name = "user_id", value = "User id", example = "1") int user_id){
 		return this.userDetailsServiceImpl.getUserDetails(user_id);
 	}
 	
@@ -75,7 +76,7 @@ public class UserDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully added")	
 	})
-	public ResponseEntity<User_Details> addUserDetails(@RequestBody User_Details userdetails){
+	public ResponseEntity<User_Details> addUserDetails(@RequestBody @ApiParam(name = "Request Body", value = "Request Params") User_Details userdetails){
 		System.out.println("Hello");
 		return this.userDetailsServiceImpl.addUserDetails(userdetails);
 	}
@@ -90,7 +91,7 @@ public class UserDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully deleted")	
 	})
-    public ResponseEntity<String> deleteUserDetails(@PathVariable int user_id) {
+    public ResponseEntity<String> deleteUserDetails(@PathVariable @ApiParam(name = "user_id", value = "User id", example = "1") int user_id) {
 
 		return this.userDetailsServiceImpl.deleteUserDetails(user_id);
     }

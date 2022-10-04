@@ -64,7 +64,7 @@ public class APIDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully retrieved")	
 	})
-	public ResponseEntity<Object> getAPIDetails(@PathVariable int api_id){
+	public ResponseEntity<Object> getAPIDetails(@PathVariable @ApiParam(name = "api_id", value = "API id", example = "1") int api_id){
 		return this.apiDetailsServiceImpl.getAPIDetails(api_id);
 	}
 	
@@ -87,12 +87,12 @@ public class APIDetailsController {
 	 * API for deleting API details in the API table in the database using api_id.
 	 * 
 	 */
-	@DeleteMapping(path="/deleteAPIDetails/{role_id}")
+	@DeleteMapping(path="/deleteAPIDetails/{api_id}")
 	@ApiOperation(value = "Delete Api from the database")
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully deleted")	
 	})
-    public ResponseEntity<String> deleteAPIDetails(@PathVariable int role_id) {
+    public ResponseEntity<String> deleteAPIDetails(@PathVariable @ApiParam(name = "api_id", value = "API id", example = "1") int role_id) {
 
 		return this.apiDetailsServiceImpl.deleteAPIDetails(role_id);
     }

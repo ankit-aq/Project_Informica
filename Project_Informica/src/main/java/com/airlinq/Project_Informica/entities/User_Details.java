@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * This class User_Details is an entity class used to store data
  * in the same format present in the database user_details table. 
@@ -30,21 +32,27 @@ public class User_Details {
 	
 	@Id
 	@Column(name="user_id")
+	@ApiModelProperty(notes = "User Id", example = "2", required = true) 
 	private long user_id;
 	
 	@Column(name="first_name")
+	@ApiModelProperty(notes = "First Name", example = "Vansh", required = true) 
 	private String first_name;
 
 	@Column(name="last_name")
+	@ApiModelProperty(notes = "Last Name", example = "Agarwal", required = true) 
 	private String last_name;
 	
 	@Column(name="alias")
+	@ApiModelProperty(notes = "Alias", example = "vanshu", required = true) 
 	private String alias;
 	
 	@Column(name="email")
+	@ApiModelProperty(notes = "Email", example = "vansh23@gmail.com", required = true) 
 	private String email;
 	
 	@Column(name="password")
+	@ApiModelProperty(notes = "Password", example = "apple23", required = true) 
 	private String password;
 
 	
