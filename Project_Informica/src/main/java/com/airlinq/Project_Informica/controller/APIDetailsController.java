@@ -18,6 +18,7 @@ import com.airlinq.Project_Informica.service.roles_service.RolesServiceImpl;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -77,7 +78,7 @@ public class APIDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully added")	
 	})
-	public ResponseEntity<API> addAPIDetails(@RequestBody API apis){
+	public ResponseEntity<API> addAPIDetails(@RequestBody @ApiParam(name = "Request Body", value = "Request Params") API apis){
 		return this.apiDetailsServiceImpl.addAPIDetails(apis);
 	}
 	

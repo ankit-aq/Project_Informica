@@ -43,7 +43,8 @@ public class UserDetailsController {
 	@GetMapping(path="/getAllUserDetails")
 	@ApiOperation(value = "Fetch all user details")
 	@ApiResponses(value = {
-		@ApiResponse(code = 200, message = "Successfully retrieved")	
+		@ApiResponse(code = 200, message = "Successfully retrieved"),
+		@ApiResponse(code = 401, message = "Successfully retrieved")
 	})
 	public ResponseEntity<List<User_Details>> getAllUserDetails(){
 		

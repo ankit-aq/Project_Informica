@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.airlinq.Project_Informica.entities.UserRolesMapping;
-import com.airlinq.Project_Informica.service.user_roles_mapping.UserRolesMappingServiceImpl;
+import com.airlinq.Project_Informica.service.user_roles_mapping_service.UserRolesMappingServiceImpl;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
