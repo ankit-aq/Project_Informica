@@ -1,4 +1,4 @@
-package com.airlinq.Project_Informica.service.user_roles_mapping;
+package com.airlinq.Project_Informica.service.user_roles_mapping_service;
 
 import java.util.List;
 
