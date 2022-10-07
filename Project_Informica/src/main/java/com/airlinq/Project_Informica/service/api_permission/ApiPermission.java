@@ -55,32 +55,21 @@ public class ApiPermission {
 	        role_name = jwtUtility.getPasswordFromToken(token);
 	    }
 	     
-	    qry = "Select email, password, role_name from user_details inner join user_roles_mapping on user_details.user_id = user_roles_mapping.user_id "
-				+ "inner join roles on user_roles_mapping.role_id = roles.role_id where email = \"" + user_email + "\" and role_name = \"" + role_name + "\";";
+ 
+	    qry = "Select api_name from user_details inner join user_roles_mapping on user_details.user_id = user_roles_mapping.user_id "
+    			+ "inner join roles on user_roles_mapping.role_id = roles.role_id "
+    			+ "inner join roles_api_mapping on roles.role_id = roles_api_mapping.role_id "
+    			+ "inner join api on roles_api_mapping.api_id = api.api_id "
+    			+ "where email = \"" + user_email + "\" and role_name = \"" + role_name + "\"and api_name = \"" + queryName + "\";";
+    	
 			
-	    List<Map<String, Object>> user_details = jdbcTemplate.queryForList(qry);
-	     
-	    if(user_details.get(0).get("role_name").toString().equals("admin")) {
-	    	return true;
-	    }
-	    else {
-	    	 
-	    	qry = "Select api_name from user_details inner join user_roles_mapping on user_details.user_id = user_roles_mapping.user_id "
-	    			+ "inner join roles on user_roles_mapping.role_id = roles.role_id"
-	    			+ "inner join roles_api_mapping on roles.role_id = roles_api_mapping.role_id "
-	    			+ "inner join api on roles_api_mapping.api_id = api.api_id "
-	    			+ "where email = \"" + user_email + "\" and role_name = \"" + role_name + "\"and api_name = \"" + queryName + "\";";
-	    	
-				
-		    List<Map<String, Object>> query_details = jdbcTemplate.queryForList(qry);
-		    
+	    List<Map<String, Object>> query_details = jdbcTemplate.queryForList(qry);
+	    
 
-		    if(query_details.isEmpty() == true) {
-		    	return false;
-		    }
-	    	 
+	    if(query_details.isEmpty() == true) {
+	    	return false;
 	    }
-	     
+
 	    return true;
 		
 	}
