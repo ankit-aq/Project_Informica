@@ -32,6 +32,7 @@ public class User_Details {
 	
 	@Id
 	@Column(name="user_id")
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@ApiModelProperty(notes = "User Id", example = "2", required = true) 
 	private long user_id;
 	

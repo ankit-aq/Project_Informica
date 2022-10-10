@@ -51,14 +51,21 @@ public class RolesAPIMappingDetailsServiceImpl implements RolesAPIMappingDetails
 	 * The function getAllRolesAPIMappingDetails fetches all mapping details from the database.
 	 */
 	@Override
-	public ResponseEntity<List<RolesAPIMapping>> getAllRolesAPIMappingDetails() {
+	public ResponseEntity<Object> getAllRolesAPIMappingDetails() {
 		
 		
 		if(userRolesAccess.permission("getAllRolesAPIMappingDetails") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		datalist = daoRolesAPIMapping.findAll();
+		qry = "Select * from roles_api_mapping;";
+		
+		List<Map<String, Object>> datalist = jdbcTemplate.queryForList(qry);
+		
+		if(datalist.isEmpty() == true) {
+
+			throw new ResourceNotFoundException("User not found");
+		}
 		return new ResponseEntity<>(datalist, HttpStatus.OK);
 	}
 
@@ -85,21 +92,6 @@ public class RolesAPIMappingDetailsServiceImpl implements RolesAPIMappingDetails
 		return new ResponseEntity<>(mapping_details.get(0), HttpStatus.OK);
 	}
 
-	
-	/**
-	 * The function addRolesAPIMappingDetails adds new role_api_mapping data in the database.
-	 */
-	@Override
-	public ResponseEntity<RolesAPIMapping> addRolesAPIMappingDetails(RolesAPIMapping rolesAPIMapping) {
-		
-		if(userRolesAccess.permission("addRolesAPIMappingDetails") != true) {
-			throw new ResourceNotFoundException("You do not have permission for this API");
-		}
-		
-		daoRolesAPIMapping.save(rolesAPIMapping);
-		return new ResponseEntity<>(rolesAPIMapping,HttpStatus.OK);
-		
-	}
 
 	
 	/**
@@ -112,8 +104,8 @@ public class RolesAPIMappingDetailsServiceImpl implements RolesAPIMappingDetails
 		if(userRolesAccess.permission("deleteRolesAPIMappingDetails") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
-		qry = "Delete from roles_api_mapping where roles_api_mapping_id = " + roles_api_mapping_id +";"; 
-		jdbcTemplate.execute(qry);
+		
+		daoRolesAPIMapping.deleteById(roles_api_mapping_id);
 		return new ResponseEntity<>("Data Deleted!",HttpStatus.OK);
 	}
 

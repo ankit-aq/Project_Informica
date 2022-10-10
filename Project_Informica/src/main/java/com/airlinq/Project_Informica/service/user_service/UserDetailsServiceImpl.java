@@ -64,11 +64,11 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	@Override
 	public ResponseEntity<Object> getUserDetails(int user_id) {
 		
-		if(userRolesAccess.permission("getUserDetail") != true) {
+		if(userRolesAccess.permission("getUserDetails") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		qry = "Select * from user_details where id = " + user_id+ ";";
+		qry = "Select * from user_details where user_id = " + user_id+ ";";
 		
 		List<Map<String, Object>> user_details = jdbcTemplate.queryForList(qry);
 		
@@ -118,7 +118,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		qry = "Delete from user_details where id = " + user_id +";"; 
+		qry = "Delete from user_details where user_id = " + user_id +";"; 
 		jdbcTemplate.execute(qry);
 		return new ResponseEntity<>("User Deleted!",HttpStatus.OK);
 	}

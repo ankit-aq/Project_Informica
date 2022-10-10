@@ -18,11 +18,9 @@ import com.airlinq.Project_Informica.entities.UserRolesMapping;
 @Service
 public interface UserRolesMappingService {
 
-	public ResponseEntity<List<UserRolesMapping>> getAllUserRolesMappingDetails();
+	public ResponseEntity<Object> getAllUserRolesMappingDetails();
 	
 	public ResponseEntity<Object> getUserRolesMappingDetails(int user_roles_mapping_id);
-	
-	public ResponseEntity<UserRolesMapping> addUserRolesMappingDetails(UserRolesMapping UserRolesMapping);
 	
 	public ResponseEntity<String> deleteUserRolesMappingDetails(int user_roles_mapping_id);
 	

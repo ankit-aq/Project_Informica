@@ -41,14 +41,21 @@ public class UserRolesMappingServiceImpl implements UserRolesMappingService{
 	 * The function getAllUserRolesMappingDetails fetches all mapping details from the database.
 	 */
 	@Override
-	public ResponseEntity<List<UserRolesMapping>> getAllUserRolesMappingDetails() {
+	public ResponseEntity<Object> getAllUserRolesMappingDetails() {
 		
-		System.out.println("hhh");
 		if(userRolesAccess.permission("getAllUserRolesMappingDetails") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		datalist = daoUserRolesMapping.findAll();
+		qry = "Select * from user_roles_mapping;";
+		
+		List<Map<String, Object>> datalist = jdbcTemplate.queryForList(qry);
+		
+		if(datalist.isEmpty() == true) {
+
+			throw new ResourceNotFoundException("User not found");
+		}
+		
 		return new ResponseEntity<>(datalist, HttpStatus.OK);
 	}
 
@@ -57,14 +64,14 @@ public class UserRolesMappingServiceImpl implements UserRolesMappingService{
 	 * The function getUserRolesMappingDetails fetches particular mapping details from the database.
 	 */
 	@Override
-	public ResponseEntity<Object> getUserRolesMappingDetails(int roles_api_mapping_id) {
+	public ResponseEntity<Object> getUserRolesMappingDetails(int user_roles_mapping_id) {
 		
 		
 		if(userRolesAccess.permission("getUserRolesMappingDetails") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
 		
-		qry = "Select * from roles_api_mapping where roles_api_mapping_id = " + roles_api_mapping_id + ";";
+		qry = "Select * from user_roles_mapping where user_roles_mapping_id = " + user_roles_mapping_id + ";";
 		
 		List<Map<String, Object>> mapping_details = jdbcTemplate.queryForList(qry);
 		
@@ -75,35 +82,19 @@ public class UserRolesMappingServiceImpl implements UserRolesMappingService{
 		return new ResponseEntity<>(mapping_details.get(0), HttpStatus.OK);
 	}
 
-	
-	/**
-	 * The function addUserRolesMappingDetails adds new user_roles_mapping data in the database.
-	 */
-	@Override
-	public ResponseEntity<UserRolesMapping> addUserRolesMappingDetails(UserRolesMapping UserRolesMapping) {
-		
-		if(userRolesAccess.permission("addUserRolesMappingDetails") != true) {
-			throw new ResourceNotFoundException("You do not have permission for this API");
-		}
-		
-		daoUserRolesMapping.save(UserRolesMapping);
-		return new ResponseEntity<>(UserRolesMapping,HttpStatus.OK);
-		
-	}
 
 	
 	/**
 	 * The function deleteUserRolesMappingDetails deletes the role_api_mapping data from the database.
 	 */
 	@Override
-	public ResponseEntity<String> deleteUserRolesMappingDetails(int roles_api_mapping_id) {
+	public ResponseEntity<String> deleteUserRolesMappingDetails(int user_roles_mapping_id) {
 		
 		
 		if(userRolesAccess.permission("deleteUserRolesMappingDetails") != true) {
 			throw new ResourceNotFoundException("You do not have permission for this API");
 		}
-		qry = "Delete from roles_api_mapping where roles_api_mapping_id = " + roles_api_mapping_id +";"; 
-		jdbcTemplate.execute(qry);
+		daoUserRolesMapping.deleteById(user_roles_mapping_id);
 		return new ResponseEntity<>("Data Deleted!",HttpStatus.OK);
 	}
 

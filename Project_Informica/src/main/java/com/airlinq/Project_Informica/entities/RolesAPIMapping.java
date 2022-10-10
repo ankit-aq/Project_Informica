@@ -24,14 +24,11 @@ import io.swagger.annotations.ApiModelProperty;
 public class RolesAPIMapping {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue
 	@Column(name="roles_api_mapping_id")
 	@ApiModelProperty(notes = "Roles_API_Mapping Id", example = "1", required = true) 
 	private int roles_api_mapping_id;
 	
-	@Column(name="role_id")
-	@ApiModelProperty(notes = "Role Id", example = "2", required = true) 
-	private int role_id;
 	
 	@Column(name="api_id")
 	@ApiModelProperty(notes = "API Id", example = "1", required = true) 
@@ -42,10 +39,9 @@ public class RolesAPIMapping {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RolesAPIMapping(int roles_api_mapping_id, int role_id, int api_id) {
+	public RolesAPIMapping(int roles_api_mapping_id, int api_id) {
 		super();
 		this.roles_api_mapping_id = roles_api_mapping_id;
-		this.role_id = role_id;
 		this.api_id = api_id;
 	}
 
@@ -57,13 +53,6 @@ public class RolesAPIMapping {
 		this.roles_api_mapping_id = roles_api_mapping_id;
 	}
 
-	public int getRole_id() {
-		return role_id;
-	}
-
-	public void setRole_id(int role_id) {
-		this.role_id = role_id;
-	}
 
 	public int getApi_id() {
 		return api_id;

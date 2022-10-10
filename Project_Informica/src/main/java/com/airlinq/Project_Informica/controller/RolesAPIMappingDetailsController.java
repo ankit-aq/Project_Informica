@@ -42,7 +42,7 @@ public class RolesAPIMappingDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully retrieved")	
 	})
-	public ResponseEntity<List<RolesAPIMapping>> getAllRolesAPIMappingDetails(){
+	public ResponseEntity<Object> getAllRolesAPIMappingDetails(){
 		
 		return this.rolesAPIMappingDetailsServiceImpl.getAllRolesAPIMappingDetails();
 	}
@@ -62,20 +62,6 @@ public class RolesAPIMappingDetailsController {
 		return this.rolesAPIMappingDetailsServiceImpl.getRolesAPIMappingDetails(roles_api_mapping_id);
 	}
 	
-	/**
-	 * API for inserting roles api mapping details in the RolesAPIMapping table in the database.
-	 * 
-	 */
-	
-	@PostMapping(path="/addRolesAPIMappingDetails")
-	@ApiOperation(value = "Add roles api mapping details in the database")
-	@ApiResponses(value = {
-		@ApiResponse(code = 200, message = "Successfully added")	
-	})
-	public ResponseEntity<RolesAPIMapping> addRolesAPIMappingDetails(@RequestBody  @ApiParam(name = "Request Body", value = "Request Params") RolesAPIMapping rolesAPIMapping){
-		
-		return this.rolesAPIMappingDetailsServiceImpl.addRolesAPIMappingDetails(rolesAPIMapping);
-	}
 	
 	
 	/**

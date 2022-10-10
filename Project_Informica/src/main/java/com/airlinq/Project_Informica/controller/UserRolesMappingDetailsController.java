@@ -42,7 +42,7 @@ public class UserRolesMappingDetailsController {
 	@ApiResponses(value = {
 		@ApiResponse(code = 200, message = "Successfully retrieved")	
 	})
-	public ResponseEntity<List<UserRolesMapping>> getAllUserRolesMappingDetails(){
+	public ResponseEntity<Object> getAllUserRolesMappingDetails(){
 		
 		return this.userRolesMappingServiceImpl.getAllUserRolesMappingDetails();
 	}
@@ -62,20 +62,6 @@ public class UserRolesMappingDetailsController {
 		return this.userRolesMappingServiceImpl.getUserRolesMappingDetails(user_roles_mapping_id);
 	}
 	
-	/**
-	 * API for inserting roles api mapping details in the UserRolesMapping table in the database.
-	 * 
-	 */
-	
-	@PostMapping(path="/addUserRolesMappingDetails")
-	@ApiOperation(value = "Add roles api mapping details in the sdsds")
-	@ApiResponses(value = {
-		@ApiResponse(code = 200, message = "Successfully added")	
-	})
-	public ResponseEntity<UserRolesMapping> addUserRolesMappingDetails(@RequestBody @ApiParam(name = "Request Body", value = "Request Params") UserRolesMapping userRolesMapping){
-		
-		return this.userRolesMappingServiceImpl.addUserRolesMappingDetails(userRolesMapping);
-	}
 	
 	
 	/**
